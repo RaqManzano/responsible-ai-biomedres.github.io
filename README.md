@@ -1,15 +1,17 @@
 # Responsible AI for Biomedical Research
 
-This repository contains a Quarto website for a modular, public-facing resource hub on responsible generative AI use in biomedical research.
+Quarto source for the CAKE fellowship website on responsible generative AI use in biomedical research.
+
+Current website: https://raqmanzano.github.io/responsible-ai-biomedres.github.io/
 
 ## Purpose
 
-The site is designed to support a fellowship project that will:
+The site is designed to support a [CAKE fellowship](https://www.cake.ac.uk/about/ke-fellowships/) project that will:
 
 - map how generative AI is being used in biomedical research
-- turn that learning into practical guidance, training and decision tools
+- turn that learning into practical guidance, training and materials
 - keep draft and reviewed resources visibly separate
-- maintain useful resource pages, including literature notes and local support links
+- maintain useful materials, including literature notes and local support links
 - accept new suggestions through GitHub Issue Forms
 
 ## Site structure
@@ -25,6 +27,13 @@ Core site pages live at the repository root:
 - `index.qmd`
 - `about.qmd`
 - `contribute.qmd`
+
+Supporting repository files include:
+
+- `CONTRIBUTING.md`
+- `CODE_OF_CONDUCT.md`
+- `LICENSE.md`
+- `assets/ATTRIBUTION.md`
 
 ## Local development
 
@@ -42,7 +51,7 @@ quarto preview
 
 ## Publishing
 
-The repository includes a GitHub Actions workflow at `.github/workflows/publish.yml` that renders the site and deploys it to GitHub Pages on pushes to `main`.
+The repository includes a GitHub Actions workflow at `.github/workflows/publish.yml` that renders the Quarto site and deploys `_site/` to GitHub Pages on pushes to `main`.
 
 ## Contributing and reuse
 
