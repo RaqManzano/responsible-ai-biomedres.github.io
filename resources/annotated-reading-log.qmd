@@ -2,8 +2,6 @@
 title: "Reviewed literature of AI use in research"
 description: "Tracking notes for literature review"
 resource_type: "Materials"
-audience:
-  - Project team
 status: "reviewed"
 reviewed_on: "2026-06-22"
 contributors:
@@ -13,7 +11,7 @@ tags:
   - evaluation
   - research use
 references:
-  - "https://doi.org/10.12688/openreseurope.22009.1"
+  - "10.12688/openreseurope.22009.1"
   - "https://electv.net/2026/02/10/air-a-framework-for-describing-how-ai-is-actually-used-in-research/"
 ---
 

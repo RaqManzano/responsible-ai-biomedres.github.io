@@ -2,9 +2,6 @@
 title: "Responsible AI guidance outline"
 description: "Starter scaffold for the core guidance document that will later consolidate reviewable recommendations."
 resource_type: "Guidance"
-audience:
-  - Researchers
-  - Research support staff
 status: "draft"
 reviewed_on: "2026-06-22"
 contributors:
@@ -32,4 +29,3 @@ This page is the initial scaffold for a reusable guidance document on responsibl
 ## Current gap
 
 The structure exists, but the guidance should not be finalised until WP1 evidence and literature review findings are integrated.
-

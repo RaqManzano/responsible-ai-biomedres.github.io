@@ -2,9 +2,6 @@
 title: "Pilot workshop outline"
 description: "Initial structure for the main responsible AI workshop to be tested during the fellowship."
 resource_type: "Training"
-audience:
-  - Researchers
-  - Research support staff
 status: "draft"
 reviewed_on: "2026-06-22"
 contributors:

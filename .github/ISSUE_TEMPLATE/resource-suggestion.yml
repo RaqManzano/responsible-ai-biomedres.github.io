@@ -20,18 +20,6 @@ body:
         - Unsure
     validations:
       required: true
-  - type: checkboxes
-    id: audience
-    attributes:
-      label: Intended audience
-      options:
-        - label: Researchers
-        - label: Research support staff
-        - label: Trainers
-        - label: Governance or IT teams
-        - label: Wider DRI or CAKE community
-    validations:
-      required: true
   - type: textarea
     id: summary
     attributes:
@@ -49,9 +37,9 @@ body:
   - type: input
     id: link
     attributes:
-      label: Stable link or file reference
-      description: DOI, URL, repository path or shared document link.
-      placeholder: https://...
+      label: DOI, stable URL or file reference
+      description: Use a DOI for papers where possible. Use a URL for websites, tools or repositories.
+      placeholder: 10.xxxx/... or https://...
   - type: textarea
     id: notes
     attributes:

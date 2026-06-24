@@ -2,9 +2,6 @@
 title: "TODOs and upcoming tasks"
 description: "Public planning notes for upcoming resources, known gaps and fellowship website priorities."
 resource_type: "Materials"
-audience:
-  - Project team
-  - Collaborators
 status: "draft"
 reviewed_on: "2026-06-22"
 contributors:

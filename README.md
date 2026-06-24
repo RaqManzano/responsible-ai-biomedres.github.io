@@ -66,11 +66,12 @@ Each resource page should include these front matter fields:
 - `title`
 - `description`
 - `resource_type`
-- `audience`
 - `status`
 - `reviewed_on`
 - `contributors`
 - `tags`
 - `references`
+
+Use DOI identifiers for scholarly papers where available. Use stable URLs for websites, tools or repositories.
 
 Use `templates/resource-template.qmd` as the starting point for new entries.

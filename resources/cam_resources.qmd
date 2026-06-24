@@ -2,8 +2,6 @@
 title: "Cambridge resources"
 description: "Potentially interesting resources in cambridge"
 resource_type: "Materials"
-audience:
-  - Cambridge researchers
 status: "draft"
 reviewed_on: "2026-06-26"
 contributors:

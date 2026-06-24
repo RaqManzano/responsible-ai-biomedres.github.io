@@ -20,8 +20,7 @@ Useful contributions include:
 
 1. Open the most relevant GitHub Issue Form.
 2. Explain what you are suggesting and why it matters.
-3. Include a stable link, citation or source where possible.
+3. Include a DOI for papers where possible, or a stable URL/source for websites, tools and reports.
 4. Be explicit about uncertainty, limits or conflicts of interest.
 
 Please do not include confidential, sensitive or identifiable data in issues.
-

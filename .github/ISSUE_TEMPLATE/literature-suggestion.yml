@@ -19,7 +19,8 @@ body:
     id: link
     attributes:
       label: DOI or stable link
-      placeholder: https://doi.org/...
+      description: Prefer the DOI for scholarly papers. Use a URL only for websites, tools, reports or sources without a DOI.
+      placeholder: 10.xxxx/... or https://...
     validations:
       required: true
   - type: checkboxes

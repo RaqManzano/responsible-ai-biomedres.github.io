@@ -2,8 +2,6 @@
 title: "Resource title"
 description: "One-sentence description of what the page is for."
 resource_type: "Guidance"
-audience:
-  - Researchers
 status: "draft"
 reviewed_on: "YYYY-MM-DD"
 contributors:
@@ -12,7 +10,7 @@ tags:
   - tag-one
   - tag-two
 references:
-  - "Stable link, citation or internal note"
+  - "DOI for papers, stable URL for websites/tools, or short citation/internal note"
 ---
 
 ## Purpose
@@ -26,4 +24,3 @@ Add the actual guidance, training, note or example here.
 ## Next revision
 
 Record the main unresolved gap or next change needed.
-

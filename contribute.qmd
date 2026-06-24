@@ -63,9 +63,8 @@ Propose a scenario, clinic question or practical example that would strengthen t
 Good submissions are brief and specific. The most important field is not the link itself but the explanation of why it matters to this project.
 
 - identify the resource type or section it belongs to
-- describe the intended audience
 - explain the practical value or decision point it supports
-- include a stable link, citation or file reference where possible
+- include a DOI, stable URL, citation or file reference where possible
 
 ## Accepted resource types
 
@@ -88,7 +87,6 @@ Every published resource should carry enough metadata to make its scope and matu
 - `title`
 - `description`
 - `resource_type`
-- `audience`
 - `status`
 - `reviewed_on`
 - `contributors`
@@ -97,7 +95,9 @@ Every published resource should carry enough metadata to make its scope and matu
 
 Use `status: "draft"` for material that is visible but still developing. Use `status: "reviewed"` only when someone has checked that the page is accurate enough for reuse. Use `status: "archived"` for material kept for transparency but no longer maintained.
 
-For literature notes, include a citation or stable link, a short summary, why the item matters to the project, and relevance tags such as governance, evaluation, bias, training or research use.
+Use `references` for traceable sources, not general reading lists. For scholarly papers, prefer the DOI as a bare identifier, for example `10.12688/openreseurope.22009.1`. Use a URL when the source is a website, tool, repository or page without a DOI. Use a short citation or internal note only when neither a DOI nor stable URL exists.
+
+For literature notes, include a citation, DOI where available, a short summary, why the item matters to the project, and relevance tags such as governance, evaluation, bias, training or research use.
 
 ## Review workflow
 

@@ -2,9 +2,6 @@
 title: "AI clinic scenario log"
 description: "Placeholder structure for collecting recurring questions and reusable examples from clinics or discussion sessions."
 resource_type: "Training"
-audience:
-  - Researchers
-  - Training teams
 status: "draft"
 reviewed_on: "2026-06-22"
 contributors:

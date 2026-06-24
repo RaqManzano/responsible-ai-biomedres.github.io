@@ -2,10 +2,6 @@
 title: "Task suitability check"
 description: "A first-pass checklist for deciding whether a biomedical research task is appropriate for generative AI."
 resource_type: "Guidance"
-audience:
-  - Researchers
-  - Technical staff
-  - Governance and training teams
 status: "draft"
 reviewed_on: "2026-06-22"
 contributors:
