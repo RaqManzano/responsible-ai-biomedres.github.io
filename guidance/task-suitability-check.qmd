@@ -1,0 +1,34 @@
+---
+title: "Task suitability check"
+description: "A first-pass checklist for deciding whether a biomedical research task is appropriate for generative AI."
+resource_type: "Guidance"
+audience:
+  - Researchers
+  - Technical staff
+  - Governance and training teams
+status: "draft"
+reviewed_on: "2026-06-22"
+contributors:
+  - Raquel Manzano
+tags:
+  - decision support
+  - governance
+  - workflow
+references:
+  - "WP1 scoping priorities"
+---
+
+## Core screening questions
+
+1. Does the task involve sensitive, identifiable or otherwise restricted data?
+2. Is the output consequential enough that unsupported hallucinations would create scientific, ethical or operational harm?
+3. Is there an approved local workflow or tool for this use case?
+4. Can a competent human verify the output before it is used or shared?
+
+## Intended use
+
+This should become a short operational screen that helps staff distinguish:
+
+- low-risk drafting or summarisation tasks
+- tasks that require caution and explicit documentation
+- tasks that should not proceed without approved infrastructure or governance review

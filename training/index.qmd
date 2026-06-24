@@ -1,0 +1,15 @@
+---
+title: "Training"
+description: "Workshops, case studies and teaching material that can be reused across teams."
+page-layout: full
+toc: false
+listing:
+  id: training-list
+  contents:
+    - "*.qmd"
+    - "!index.qmd"
+  type: grid
+  sort: "title"
+---
+
+Training resources should be concrete enough to reuse, adapt and evaluate. Case studies belong here when their main value is discussion or teaching.

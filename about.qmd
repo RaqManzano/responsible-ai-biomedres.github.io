@@ -1,0 +1,112 @@
+---
+title: "About the Project"
+description: "Project background, structure and timeline."
+page-layout: article
+---
+
+## Why this project exists
+
+This project was developed as part of a [DRI Knowledge Exchange Fellowships](https://www.cake.ac.uk/about/ke-fellowships/) supported by the [Computational Abilities Knowledge Exchange (CAKE)](https://www.cake.ac.uk/about/who-are-we) project.
+
+::: {.logo-strip .logo-strip--about aria-label="Project partners and host institutions"}
+<span class="logo-strip__label">Affiliations</span>
+![](assets/logos/CAKE_logo1.png){fig-alt="Computational Abilities Knowledge Exchange logo" .logo-strip__logo .logo-strip__logo--cake}
+![](assets/logos/cruk-logo-high-res.png){fig-alt="Cancer Research UK Cambridge Institute logo" .logo-strip__logo .logo-strip__logo--cruk}
+![](assets/logos/university-of-cambridge-logo-1.png){fig-alt="University of Cambridge logo" .logo-strip__logo .logo-strip__logo--cambridge}
+:::
+
+Generative AI is rapidly becoming part of biomedical research. It is already being used to write code, summarise information, support analysis, draft documents and explore new ideas. It is a transformative tool, but it is being adopted faster than any institutions, teams and individuals have had time to properly reflect on.
+
+This project comes from the idea that researchers and research-support staff should not simply adapt passively to this change. Instead, they should be supported to understand what these tools can and cannot do, where the risks are, and how to make informed decisions about their use. The aim is to help people take control of this transformation, rather than feeling that AI is something happening around them without clear guidance or shared practice.
+
+This project is designed to turn that uncertainty into practical support: guidance, decision tools, training and reusable examples that can improve day-to-day judgement around responsible use.
+
+## What is this website for
+
+In this website, the goal is to put together the resources and lessons we will gather throughout the fellowship. This will also be the foundation for the delivery of reusable materials for the wider CAKE and DRI communities. 
+
+Our compromise is to:
+
+- publish practical and reusable material
+- create explicit guidance on generative AI in a biomedical research environment
+- keep clear document contribution and review 
+
+
+## Project structure
+
+The fellowship is currently divided in three main work packages (WP).
+
+### WP1: Understand current and emerging needs
+
+Map how generative AI is actually being used, where uncertainty persists, and which practical decisions need clearer support. This includes surveys, targeted discussions, clinics and ongoing horizon scanning.
+
+### WP2: Develop and deliver practical support
+
+Translate WP1 findings into reusable outputs such as workshops, cheat sheets, guidance pages and decision tools. The website gives these outputs a stable, version-controlled home.
+
+### WP3: Evaluate, refine and disseminate
+
+Revise the toolkit through feedback, document what changed, and share the resulting material through CAKE and related Cambridge training networks.
+
+## Timeline
+
+```{mermaid}
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "background": "#f5f2ea",
+    "primaryTextColor": "#17313b",
+    "lineColor": "#eee8dd",
+    "gridColor": "#eee8dd",
+    "sectionBkgColor": "#faf7f1",
+    "altSectionBkgColor": "#fdfbf7",
+    "taskBkgColor": "#dbe8e5",
+    "taskBorderColor": "#0f6170",
+    "activeTaskBkgColor": "#ead9bd",
+    "activeTaskBorderColor": "#9b6f2f",
+    "doneTaskBkgColor": "#e6dde8",
+    "doneTaskBorderColor": "#745f7c"
+  },
+  "gantt": {
+    "barHeight": 22,
+    "barGap": 6,
+    "topPadding": 50,
+    "fontSize": 13,
+    "sectionFontSize": 15
+  }
+}}%%
+gantt
+    title CAKE fellowship timeline
+    dateFormat YYYY-MM-DD
+    axisFormat %b %y
+
+    section WP1
+    Horizon scanning and literature review :active, 2026-07-01, 2026-09-30
+    Survey discussions                     :active, 2026-07-15, 2026-12-31
+    AI clinics                             :active, 2026-09-01, 2027-04-30
+
+    section WP2
+    Toolkit and workshop design            :2026-10-01, 2026-12-31
+    Pilot workshop and feedback            :2027-01-01, 2027-02-28
+
+    section WP3
+    Revision and wider testing             :done, 2027-03-01, 2027-04-30
+    Evaluation and final packaging         :done, 2027-05-01, 2027-06-30
+    Wrap up and dissemination              :done, 2027-07-01, 2027-07-31
+```
+
+| Period | Focus |
+|---|---|
+| Months 1-3 | Scoping, literature review, survey design, targeted discussions |
+| Months 4-6 | Resource drafting, workshop design, decision-tool development |
+| Months 7-8 | Pilot workshop, AI clinics, early feedback capture |
+| Months 9-10 | Revision, wider testing, reuse planning |
+| Months 11-12 | Evaluation summary, dissemination, final toolkit packaging |
+: Fellowship timeline {.timeline-table}
+
+
+## About the author
+
+My name is Raquel Manzano and I am a senior bioinformatician at Cancer Research UK Cambridge Institute. I have a keen interest in genomics and transcriptomics data-driven translational research. As many of us now, I am quite taken by generative AI. It is able to make me feel sometimes like the sky is the limit but some other times... well it really grounds me to earth and the reality that I should read that paper myself.
+
+With this project I wanted to create a space to reflect about what is going on in the field and how we can tackle it together as a community. Overall, a more human approach to a wave of artificial interactions.

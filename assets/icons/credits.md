@@ -1,0 +1,1 @@
+Icons from [Tabler Icons](https://tabler.io/icons), MIT License.

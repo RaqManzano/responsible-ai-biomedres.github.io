@@ -1,58 +1,67 @@
 # Responsible AI for Biomedical Research
 
-Practical guidance, training and decision tools for safer and more standardised generative AI use in biomedical research.
+This repository contains a Quarto website for a modular, public-facing resource hub on responsible generative AI use in biomedical research.
 
-## About this project
+## Purpose
 
-Generative AI is already being used across biomedical research, but often in informal and inconsistent ways. This project aims to understand how researchers and research-support staff are currently using AI, where uncertainty or misconceptions remain, and what practical support is needed to use these tools more safely and purposefully.
+The site is designed to support a fellowship project that will:
 
-The project uses the Cancer Research UK Cambridge Institute as a pilot DRI community. Through surveys, discussion panels and open AI clinics, it will gather real examples of how generative AI is being used in day-to-day research and research-support work. These findings will be used to develop and deliver practical training, decision tools and reusable guidance for responsible AI use.
+- map how generative AI is being used in biomedical research
+- turn that learning into practical guidance, training and decision tools
+- keep draft and reviewed resources visibly separate
+- maintain useful resource pages, including literature notes and local support links
+- accept new suggestions through GitHub Issue Forms
 
-The final resources will be tested, refined and shared through CAKE so they can be reused by the wider DRI community.
+## Site structure
 
-## Aims
+The content is organised around three practical resource types:
 
-This project aims to:
+- `guidance/`
+- `training/`
+- `resources/`
 
-* Map how generative AI is currently being used in biomedical research.
-* Identify useful applications, common misconceptions and areas of uncertainty.
-* Develop and deliver practical training and guidance for safer AI use.
-* Create decision tools to help staff judge when AI use is appropriate, risky or unsuitable.
-* Share reusable resources with the wider DRI community.
+Core site pages live at the repository root:
 
-## Project structure
+- `index.qmd`
+- `about.qmd`
+- `contribute.qmd`
 
-The fellowship is organised into three connected work packages:
+## Local development
 
-### WP1: Understanding current and emerging needs
+Render the site locally with:
 
-This work package will gather information on how generative AI is currently being used and where staff need clearer support. Activities may include surveys, focused discussions, open AI clinics and engagement with research, technical, training, information governance and IT/security colleagues.
+```bash
+quarto render
+```
 
-### WP2: Developing and delivering practical support
+Preview it during editing with:
 
-Findings from WP1 will be translated into practical resources, including training sessions, decision tools, guidance documents, scenario-based examples and AI cheat sheets. The aim is to support safer, more consistent and more standardised AI practice.
+```bash
+quarto preview
+```
 
-### WP3: Evaluation and dissemination
+## Publishing
 
-The resources will be evaluated through feedback from workshops, AI clinics, discussion sessions and surveys where possible. The toolkit will then be refined and shared through CAKE as reusable training and knowledge-exchange material.
+The repository includes a GitHub Actions workflow at `.github/workflows/publish.yml` that renders the site and deploys it to GitHub Pages on pushes to `main`.
 
-## Outputs
+## Contributing and reuse
 
-Planned outputs include:
+Please see `CONTRIBUTING.md` and `CODE_OF_CONDUCT.md` before opening issues or suggesting material.
 
-* Practical training materials
-* Responsible AI guidance
-* Decision trees for AI use
-* Scenario-based examples
-* AI cheat sheets
-* Summary reports or blog posts
-* Version-controlled reusable resources
+Website code, written content and third-party assets have different reuse terms. See `LICENSE.md` and `assets/ATTRIBUTION.md`.
 
-## Who is this for?
+## Content model
 
-This project is aimed at researchers, research-support staff, trainers, technical teams and others working in biomedical research who want to use generative AI more safely, clearly and effectively.
+Each resource page should include these front matter fields:
 
-## Status
+- `title`
+- `description`
+- `resource_type`
+- `audience`
+- `status`
+- `reviewed_on`
+- `contributors`
+- `tags`
+- `references`
 
-This project is currently under development as part of a fellowship proposal.
-
+Use `templates/resource-template.qmd` as the starting point for new entries.

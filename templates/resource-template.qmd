@@ -1,0 +1,29 @@
+---
+title: "Resource title"
+description: "One-sentence description of what the page is for."
+resource_type: "Guidance"
+audience:
+  - Researchers
+status: "draft"
+reviewed_on: "YYYY-MM-DD"
+contributors:
+  - Your name
+tags:
+  - tag-one
+  - tag-two
+references:
+  - "Stable link, citation or internal note"
+---
+
+## Purpose
+
+State what the resource does and who it helps.
+
+## Content
+
+Add the actual guidance, training, note or example here.
+
+## Next revision
+
+Record the main unresolved gap or next change needed.
+

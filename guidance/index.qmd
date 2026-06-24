@@ -1,0 +1,15 @@
+---
+title: "Guidance"
+description: "Practical guidance and decision support for responsible generative AI use in biomedical research."
+page-layout: full
+toc: false
+listing:
+  id: guidance-list
+  contents:
+    - "*.qmd"
+    - "!index.qmd"
+  type: grid
+  sort: "title"
+---
+
+Guidance pages should consolidate usable recommendations, decision support and practical boundaries.

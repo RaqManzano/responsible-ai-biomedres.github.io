@@ -1,0 +1,52 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - "*.qmd"
+    - "resources/*.qmd"
+    - "guidance/*.qmd"
+    - "training/*.qmd"
+    - "!templates/"
+
+website:
+  title: "Responsible AI for Biomedical Research"
+  site-url: "https://raqmanzano.github.io/responsible-ai-biomedres.github.io/"
+  repo-url: "https://github.com/RaqManzano/responsible-ai-biomedres.github.io"
+  repo-actions: [issue]
+  search: true
+  page-navigation: true
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: resources/index.qmd
+        text: Resources
+      - href: about.qmd
+        text: About
+      - href: contribute.qmd
+        text: Contribute
+    right:
+      - icon: github
+        href: "https://github.com/RaqManzano/responsible-ai-biomedres.github.io"
+        aria-label: "GitHub repository"
+  page-footer:
+    left: "Practical guidance, training and decision tools for responsible generative AI use in biomedical research."
+    right: "Draft material stays public and clearly marked to support transparent iteration."
+
+format:
+  html:
+    theme:
+      - litera
+      - styles.scss
+    toc: false
+    toc-depth: 3
+    smooth-scroll: true
+    link-external-newwindow: false
+    include-in-header:
+      text: |
+        <meta name="theme-color" content="#103b4a">
+    filters:
+      - filters/resource-meta.lua
+
+execute:
+  freeze: auto

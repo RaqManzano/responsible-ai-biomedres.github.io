@@ -1,0 +1,28 @@
+---
+title: "Cambridge resources"
+description: "Potentially interesting resources in cambridge"
+resource_type: "Materials"
+audience:
+  - Cambridge researchers
+status: "draft"
+reviewed_on: "2026-06-26"
+contributors:
+  - Raquel Manzano
+tags:
+  - Cambridge
+  - local resources
+  - support
+  - training
+---
+
+## CSD3
+
+### HPC and AI Clinic
+
+**What it is:** Support clinic for users working with Research Computing Services systems.
+
+**Why it matters:** Useful for technical questions around compute, HPC workflows and AI-related infrastructure.
+
+**Best fit:** Technical support / local infrastructure
+
+**Notes:** Focused on practical technical challenges.

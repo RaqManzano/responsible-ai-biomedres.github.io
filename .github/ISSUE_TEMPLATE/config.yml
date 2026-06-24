@@ -1,0 +1,6 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Contribution guidance
+    url: https://raqmanzano.github.io/responsible-ai-biomedres.github.io/contribute.html
+    about: Read the site contribution workflow before opening an issue.
+

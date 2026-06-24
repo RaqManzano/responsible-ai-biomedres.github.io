@@ -1,0 +1,35 @@
+---
+title: "Responsible AI guidance outline"
+description: "Starter scaffold for the core guidance document that will later consolidate reviewable recommendations."
+resource_type: "Guidance"
+audience:
+  - Researchers
+  - Research support staff
+status: "draft"
+reviewed_on: "2026-06-22"
+contributors:
+  - Raquel Manzano
+tags:
+  - governance
+  - sensitive data
+  - reproducibility
+references:
+  - "Project scoping notes"
+---
+
+## Purpose
+
+This page is the initial scaffold for a reusable guidance document on responsible generative AI use in biomedical research settings.
+
+## Planned contents
+
+- what kinds of tasks are low-risk, cautionary or unsuitable
+- how to think about sensitive or human-derived data
+- when documentation of AI use should be expected
+- where human review remains mandatory
+- how local governance and IT constraints override convenience
+
+## Current gap
+
+The structure exists, but the guidance should not be finalised until WP1 evidence and literature review findings are integrated.
+

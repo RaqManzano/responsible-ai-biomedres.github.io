@@ -1,0 +1,47 @@
+name: Training case or example suggestion
+description: Suggest a scenario, clinic question or practical example for training pages.
+title: "[Case]: "
+labels:
+  - case-suggestion
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for real or representative scenarios that reveal a practical AI decision point.
+  - type: textarea
+    id: scenario
+    attributes:
+      label: Scenario or question
+      description: Describe the case clearly enough that someone else can understand the decision problem.
+    validations:
+      required: true
+  - type: dropdown
+    id: section
+    attributes:
+      label: Best-fit section
+      options:
+        - Training
+        - Guidance
+        - Materials
+        - Unsure
+    validations:
+      required: true
+  - type: textarea
+    id: risk
+    attributes:
+      label: Main uncertainty or risk
+      description: What makes this case worth capturing?
+    validations:
+      required: true
+  - type: textarea
+    id: takeaway
+    attributes:
+      label: Expected takeaway
+      description: What should someone learn from this example?
+    validations:
+      required: true
+  - type: textarea
+    id: provenance
+    attributes:
+      label: Provenance or context
+      description: Note whether this came from a clinic, workshop, informal discussion or another source.

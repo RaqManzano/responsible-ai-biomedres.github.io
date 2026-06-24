@@ -1,0 +1,119 @@
+---
+title: "Contribute"
+description: "This is an open project, we very much welcome contributions and discussion about the topic"
+page-layout: article
+---
+
+## How to contribute
+
+This project uses [GitHub Issue Forms](https://docs.github.com/en/issues/tracking-your-work-with-issues/learning-about-issues/about-issues) as the main submission route. That is deliberate: issues preserve provenance, make review visible, and keep future publishing work tied to a versioned record.
+
+Before contributing, please read the [Code of Conduct](https://github.com/RaqManzano/responsible-ai-biomedres.github.io/blob/main/CODE_OF_CONDUCT.md). Feedback is welcome, including strong disagreement, but it should be specific, constructive and evidence-aware.
+
+## How contributions become resources
+
+This site is meant to grow through useful findings, practical experience and strong opinions that can be defended. We tried to make the process simple but we accept suggestions.
+
+### 1. Find something worth sharing
+
+This could be a paper, tool, example, failure mode, workshop idea, policy document or practical question from real research work. The important part is not that it is polished, but that it is relevant and worth discussing.
+
+### 2. Decide where it fits
+
+Suggestions should go into the most useful section: `guidance`, `training` or `materials`. If the fit is unclear, that is fine; the review process can help place it.
+
+### 3. Discuss and review
+
+Someone else reviews the issue and provides constructive feedback. Strong opinions are very welcome, but they need strong rationale too.
+
+### 4. Publish
+
+Accepted contributions are added to the page!
+
+## Submit a suggestion
+
+::: {.section-card-grid}
+::: {.contribute-step}
+### Resource suggestion
+
+Suggest a guidance page, training item, local resource, reading note or other reusable material.
+
+[Open the form](https://github.com/RaqManzano/responsible-ai-biomedres.github.io/issues/new?template=resource-suggestion.yml){.pill-link}
+:::
+
+::: {.contribute-step}
+### Literature suggestion
+
+Add a paper, article or report to the resources section, with a short note on why it matters.
+
+[Open the form](https://github.com/RaqManzano/responsible-ai-biomedres.github.io/issues/new?template=literature-suggestion.yml){.pill-link}
+:::
+
+::: {.contribute-step}
+### Case or example suggestion
+
+Propose a scenario, clinic question or practical example that would strengthen training or decision support.
+
+[Open the form](https://github.com/RaqManzano/responsible-ai-biomedres.github.io/issues/new?template=case-example-suggestion.yml){.pill-link}
+:::
+:::
+
+## What to include
+
+Good submissions are brief and specific. The most important field is not the link itself but the explanation of why it matters to this project.
+
+- identify the resource type or section it belongs to
+- describe the intended audience
+- explain the practical value or decision point it supports
+- include a stable link, citation or file reference where possible
+
+## Accepted resource types
+
+`resource_type` is the controlled label used in each Quarto page to describe what kind of resource it is. Please use one of these values:
+
+- `Guidance`
+- `Training`
+- `Materials`
+
+Use `tags` for the practical subtype. For example, a workshop and a case study can both be `Training`; a literature note and a Cambridge support directory can both be `Materials`.
+
+Use `Materials` for reading notes, local support links, background documents, tools, websites and other useful items gathered during the fellowship. These should live under `resources/` so they appear on the Materials page.
+
+GitHub issue forms use dropdowns for this where possible, so new suggestions should not introduce extra labels or spelling variants.
+
+## Metadata and review status
+
+Every published resource should carry enough metadata to make its scope and maturity clear:
+
+- `title`
+- `description`
+- `resource_type`
+- `audience`
+- `status`
+- `reviewed_on`
+- `contributors`
+- `tags`
+- `references`
+
+Use `status: "draft"` for material that is visible but still developing. Use `status: "reviewed"` only when someone has checked that the page is accurate enough for reuse. Use `status: "archived"` for material kept for transparency but no longer maintained.
+
+For literature notes, include a citation or stable link, a short summary, why the item matters to the project, and relevance tags such as governance, evaluation, bias, training or research use.
+
+## Review workflow
+
+1. Submit the issue form.
+2. Triage the issue into the correct section of the site.
+3. Convert the accepted suggestion into a Quarto page or update an existing page.
+4. Publish the change and link the issue to the resulting page.
+5. Close the issue once the published page is live or the suggestion is clearly resolved.
+
+## If you are new to GitHub
+
+GitHub is being used here as a lightweight editorial workflow, not as a barrier. To submit:
+
+1. Open one of the issue forms above.
+2. Sign in to GitHub if prompted.
+3. Fill only the required fields first.
+4. Submit the issue.
+
+If someone cannot use GitHub directly, a maintainer can open the issue on their behalf, but the target workflow remains the same.

@@ -1,0 +1,53 @@
+name: Literature suggestion
+description: Suggest a paper, article, report or other reading item for the resources section.
+title: "[Literature]: "
+labels:
+  - literature-suggestion
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for literature entries in the resources section. Please explain why the item matters, not just what it is.
+  - type: input
+    id: citation
+    attributes:
+      label: Citation or title
+      description: Provide the citation, title or both.
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: DOI or stable link
+      placeholder: https://doi.org/...
+    validations:
+      required: true
+  - type: checkboxes
+    id: relevance
+    attributes:
+      label: Relevance tags
+      options:
+        - label: Governance
+        - label: Training
+        - label: Research use
+        - label: Bias or fairness
+        - label: Evaluation
+        - label: Environmental impact
+  - type: textarea
+    id: summary
+    attributes:
+      label: Short summary
+      description: If you have not read it fully, say so explicitly.
+    validations:
+      required: true
+  - type: textarea
+    id: why_matters
+    attributes:
+      label: Why is this important to the project?
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Follow-up notes
+      description: Add any cautions, context or next reading actions.

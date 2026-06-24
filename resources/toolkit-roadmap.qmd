@@ -1,0 +1,36 @@
+---
+title: "TODOs and upcoming tasks"
+description: "Public planning notes for upcoming resources, known gaps and fellowship website priorities."
+resource_type: "Materials"
+audience:
+  - Project team
+  - Collaborators
+status: "draft"
+reviewed_on: "2026-06-22"
+contributors:
+  - Raquel Manzano
+tags:
+  - TODO
+  - drafts
+  - planning
+references:
+  - "Current site implementation plan"
+---
+
+This page is a lightweight public TODO list for the website. It should stay connected to the broader fellowship schedule in the [About page timeline](../about.qmd#timeline).
+
+## Coming tasks
+
+- expand the literature section into individual annotated entries
+- convert the decision-tool scaffold into a short operational checklist
+- add workshop materials once pilot content stabilises
+
+## Known gaps
+
+- no literature synthesis pages yet
+- no clinic-derived case examples yet
+- no reviewed guidance document yet
+
+## Why this is public
+
+Keeping these tasks visible makes it easier for collaborators to see where suggestions are most useful and prevents the site from appearing more complete than it is.

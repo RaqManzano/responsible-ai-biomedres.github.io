@@ -1,0 +1,17 @@
+---
+title: "Materials"
+description: "Reading notes, local support links and other useful material gathered during the fellowship."
+page-layout: full
+toc: false
+listing:
+  id: materials-list
+  contents:
+    - "*.qmd"
+    - "!index.qmd"
+    - "!materials.qmd"
+  type: grid
+  sort: "title"
+---
+
+Materials are useful items gathered during the fellowship: reading notes, Cambridge support links, background documents, tools and other references that do not fit cleanly as guidance or training.
+

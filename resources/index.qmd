@@ -1,0 +1,49 @@
+---
+title: "Resources"
+description: "Reading notes, local support links and other useful material gathered during the fellowship."
+page-layout: full
+toc: false
+---
+
+## How the site is organised
+
+The site uses three practical resource types: guidance, training and materials. Subtypes such as decision tools, case studies, literature notes and Cambridge links are handled with tags.
+
+::: {.section-card-grid}
+::: {.section-card}
+![](../assets/icons/lighthouse.svg){fig-alt="Guidance icon" .home-link-card__icon}
+
+### Guidance
+
+Principles, recommendations and practical boundaries for responsible generative AI use.
+
+[Browse guidance](../guidance/index.qmd)
+:::
+
+::: {.section-card}
+![](../assets/icons/training.svg){fig-alt="Training icon" .home-link-card__icon}
+
+### Training
+
+Workshops, case studies and teaching resources intended for reuse.
+
+[Browse training](../training/index.qmd)
+:::
+
+::: {.section-card}
+![](../assets/icons/article.svg){fig-alt="Materials icon" .home-link-card__icon}
+
+### Materials
+
+Reading notes, Cambridge links and other useful material gathered during the fellowship.
+
+[Browse materials](materials.qmd)
+:::
+:::
+
+## Transparency rules
+
+- Draft and reviewed content are visibly distinct.
+- Every resource carries explicit metadata.
+- Contributions enter through GitHub issues so suggestions remain traceable.
+- Literature notes should explain relevance, not just store citations.

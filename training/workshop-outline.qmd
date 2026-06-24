@@ -1,0 +1,30 @@
+---
+title: "Pilot workshop outline"
+description: "Initial structure for the main responsible AI workshop to be tested during the fellowship."
+resource_type: "Training"
+audience:
+  - Researchers
+  - Research support staff
+status: "draft"
+reviewed_on: "2026-06-22"
+contributors:
+  - Raquel Manzano
+tags:
+  - workshop
+  - training
+  - evaluation
+references:
+  - "WP2 workshop concept"
+---
+
+## Intended session blocks
+
+- what generative AI is good at and where it fails
+- local constraints around sensitive data and infrastructure
+- scenario-based exercises using real biomedical research decisions
+- documentation, attribution and human oversight
+- open discussion of uncertainty, misconceptions and edge cases
+
+## Evaluation note
+
+The workshop should collect feedback that improves both content and delivery. It should not be treated as a one-off presentation.

@@ -1,0 +1,59 @@
+name: Resource suggestion
+description: Suggest a guidance page, training item, local resource, reading note or other reusable material.
+title: "[Resource]: "
+labels:
+  - resource-suggestion
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for material that should become a reusable site resource.
+  - type: dropdown
+    id: resource_type
+    attributes:
+      label: Resource type
+      description: Choose the controlled resource type this suggestion most naturally fits.
+      options:
+        - Guidance
+        - Training
+        - Materials
+        - Unsure
+    validations:
+      required: true
+  - type: checkboxes
+    id: audience
+    attributes:
+      label: Intended audience
+      options:
+        - label: Researchers
+        - label: Research support staff
+        - label: Trainers
+        - label: Governance or IT teams
+        - label: Wider DRI or CAKE community
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: What is the resource?
+      description: Keep it concise. Say what it is and what problem it solves.
+    validations:
+      required: true
+  - type: textarea
+    id: why_matters
+    attributes:
+      label: Why does this matter to the project?
+      description: This is the most important field. Explain the practical value.
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: Stable link or file reference
+      description: DOI, URL, repository path or shared document link.
+      placeholder: https://...
+  - type: textarea
+    id: notes
+    attributes:
+      label: Extra notes
+      description: Add provenance, constraints, or implementation ideas if useful.

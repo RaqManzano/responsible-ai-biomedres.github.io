@@ -1,0 +1,29 @@
+---
+title: "Reviewed literature of AI use in research"
+description: "Tracking notes for literature review"
+resource_type: "Materials"
+audience:
+  - Project team
+status: "reviewed"
+reviewed_on: "2026-06-22"
+contributors:
+  - Raquel Manzano
+tags:
+  - literature
+  - evaluation
+  - research use
+references:
+  - "https://doi.org/10.12688/openreseurope.22009.1"
+  - "https://electv.net/2026/02/10/air-a-framework-for-describing-how-ai-is-actually-used-in-research/"
+---
+
+## Why this note exists
+
+These items were explicitly suggested during CAKE review as useful context for understanding how AI is being used in research settings and for sharpening the framing of WP1.
+
+## Reading list
+
+| Item | DOI / link | Why it matters | Notes |
+|---|---|---|---|
+| AI use in research settings | [10.12688/openreseurope.22009.1](https://doi.org/10.12688/openreseurope.22009.1) | Suggested by CAKE review as useful background for WP1. |  |
+| AIR framework commentary | [AIR framework article](https://electv.net/2026/02/10/air-a-framework-for-describing-how-ai-is-actually-used-in-research/) | Potentially useful framing for describing how AI is actually used in research work. |  |

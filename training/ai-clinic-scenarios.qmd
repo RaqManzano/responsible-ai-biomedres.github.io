@@ -1,0 +1,31 @@
+---
+title: "AI clinic scenario log"
+description: "Placeholder structure for collecting recurring questions and reusable examples from clinics or discussion sessions."
+resource_type: "Training"
+audience:
+  - Researchers
+  - Training teams
+status: "draft"
+reviewed_on: "2026-06-22"
+contributors:
+  - Raquel Manzano
+tags:
+  - case studies
+  - clinics
+  - scenarios
+references:
+  - "Planned WP1 and WP2 clinic activities"
+---
+
+## How this section should be used
+
+Each scenario should capture:
+
+- the original question or use case
+- the main risk or uncertainty
+- the judgement process used to respond
+- the practical takeaway for future users
+
+## Why this matters
+
+Clinic material is often where the real edge cases appear. If those examples stay informal, the project loses some of its most valuable evidence.
