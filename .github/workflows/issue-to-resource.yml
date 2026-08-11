@@ -57,14 +57,15 @@ jobs:
         id: kind
         run: |
           labels="${{ steps.issue.outputs.labels }}"
-          if echo "$labels" | grep -q 'resource-suggestion'; then
+          title="$(cat issue_title.txt)"
+          if echo "$labels" | grep -q 'resource-suggestion' || echo "$title" | grep -qi '^\[Resource\]:'; then
             echo "kind=resource" >> "$GITHUB_OUTPUT"
-          elif echo "$labels" | grep -q 'literature-suggestion'; then
+          elif echo "$labels" | grep -q 'literature-suggestion' || echo "$title" | grep -qi '^\[Literature\]:'; then
             echo "kind=literature" >> "$GITHUB_OUTPUT"
-          elif echo "$labels" | grep -q 'case-suggestion'; then
+          elif echo "$labels" | grep -q 'case-suggestion' || echo "$title" | grep -qi '^\[Case\]:'; then
             echo "kind=case" >> "$GITHUB_OUTPUT"
           else
-            echo "Issue does not carry a recognised content label ($labels); nothing to do." >&2
+            echo "Issue has no recognised content label ($labels) or title prefix ($title); nothing to do." >&2
             exit 1
           fi
 
