@@ -1,0 +1,101 @@
+name: Draft resource page from issue
+
+on:
+  issues:
+    types: [opened, labeled]
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: "Issue number to (re)process"
+        required: true
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: issue-to-resource-${{ github.event.issue.number || inputs.issue_number }}
+  cancel-in-progress: true
+
+jobs:
+  draft-pr:
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      contains(github.event.issue.labels.*.name, 'resource-suggestion') ||
+      contains(github.event.issue.labels.*.name, 'literature-suggestion') ||
+      contains(github.event.issue.labels.*.name, 'case-suggestion')
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Resolve issue number
+        id: resolve
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "number=${{ inputs.issue_number }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "number=${{ github.event.issue.number }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Fetch issue
+        id: issue
+        run: |
+          gh issue view "${{ steps.resolve.outputs.number }}" \
+            --repo "${{ github.repository }}" \
+            --json number,title,body,labels,author,url > issue.json
+
+          jq -r '.title' issue.json > issue_title.txt
+          jq -r '.body' issue.json > issue_body.txt
+          jq -r '.author.login' issue.json > issue_author.txt
+          jq -r '.url' issue.json > issue_url.txt
+          echo "labels=$(jq -r '[.labels[].name] | join(",")' issue.json)" >> "$GITHUB_OUTPUT"
+
+      - name: Determine issue kind
+        id: kind
+        run: |
+          labels="${{ steps.issue.outputs.labels }}"
+          if echo "$labels" | grep -q 'resource-suggestion'; then
+            echo "kind=resource" >> "$GITHUB_OUTPUT"
+          elif echo "$labels" | grep -q 'literature-suggestion'; then
+            echo "kind=literature" >> "$GITHUB_OUTPUT"
+          elif echo "$labels" | grep -q 'case-suggestion'; then
+            echo "kind=case" >> "$GITHUB_OUTPUT"
+          else
+            echo "Issue does not carry a recognised content label ($labels); nothing to do." >&2
+            exit 1
+          fi
+
+      - name: Build resource page
+        id: build
+        env:
+          KIND: ${{ steps.kind.outputs.kind }}
+          ISSUE_NUMBER: ${{ steps.resolve.outputs.number }}
+          ISSUE_BODY_FILE: issue_body.txt
+        run: |
+          export ISSUE_TITLE="$(cat issue_title.txt)"
+          export ISSUE_AUTHOR="$(cat issue_author.txt)"
+          export ISSUE_URL="$(cat issue_url.txt)"
+          export GENERATED_DATE="$(date -u +%F)"
+          node .github/scripts/build-resource.cjs
+
+      - name: Open pull request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "Add resource from issue #${{ steps.resolve.outputs.number }}"
+          branch: "auto/issue-${{ steps.resolve.outputs.number }}"
+          title: "Add resource: ${{ steps.build.outputs.resource_title }}"
+          labels: |
+            automated-resource
+          body: |
+            Auto-generated from #${{ steps.resolve.outputs.number }}.
+
+            - File: `${{ steps.build.outputs.file_path }}`
+            - Resource type: `${{ steps.build.outputs.resource_type }}`
+            - Needs manual triage/placement: `${{ steps.build.outputs.needs_triage }}`
+
+            Status is set to `draft` — please review the content, edit as needed, and merge to publish.
+
+            Closes #${{ steps.resolve.outputs.number }}
