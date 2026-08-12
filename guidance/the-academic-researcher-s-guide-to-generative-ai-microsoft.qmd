@@ -1,0 +1,23 @@
+---
+title: "The Academic Researcher’s Guide to Generative AI - Microsoft tools"
+description: "Blog from Microsoft sharing insights and practical frameworks for considering generative AI as a research instrument. Available as downloadable pdf."
+resource_type: "Guidance"
+status: "draft"
+reviewed_on: "2026-08-12"
+contributors:
+  - "Community suggestion by @EmilyKate416 (issue #1)"
+tags:
+  - "guidance"
+  - "issue-suggested"
+references:
+  - "https://techcommunity.microsoft.com/blog/skills-hub-blog/strengthen-your-research-workflow-with-generative-ai/4501740"
+  - "https://github.com/RaqManzano/responsible-ai-biomedres.github.io/issues/1"
+---
+
+## What is the resource?
+
+Blog from Microsoft sharing insights and practical frameworks for considering generative AI as a research instrument. Available as downloadable pdf.
+
+## Why does this matter to the project?
+
+The guide’s purpose is to support researchers in asking well‑formed questions about the tools they use and in reflecting on the role that those tools play in research processes.
