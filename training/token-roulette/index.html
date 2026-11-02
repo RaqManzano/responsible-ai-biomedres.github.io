@@ -144,6 +144,30 @@
     margin: 0;
   }
 
+  /* ---------- scroll hint ---------- */
+  .scroll-hint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    margin: 26px auto 0;
+    width: max-content;
+    font-family: var(--f-mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .scroll-hint:hover { color: var(--accent); }
+  .scroll-hint:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 6px; }
+  .scroll-hint .arrow {
+    font-size: 22px;
+    line-height: 1;
+    color: var(--accent);
+    animation: nudge 1.6s ease-in-out infinite;
+  }
+  @keyframes nudge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+
   /* ---------- panels ---------- */
   .panel {
     background: var(--surface);
@@ -540,7 +564,7 @@
 <div class="wrap">
 
   <div class="lede">
-    <h1>Eight strings. Guess what they cost.</h1>
+    <h1>Six strings. Guess what they cost.</h1>
     <p class="sub">A language model never sees your words. It sees tokens — chunks the vocabulary learned in advance. Commit to a number before each reveal; being wrong is the part that teaches.</p>
   </div>
 
@@ -590,6 +614,11 @@
     </div>
   </section>
 
+  <a class="scroll-hint" id="scroll-hint" href="#sandbox">
+    <span>After the rounds, try your own words</span>
+    <span class="arrow" aria-hidden="true">↓</span>
+  </a>
+
   <!-- SCORECARD -->
   <section class="panel fade-in" id="score-panel" hidden style="margin-top:14px">
     <p class="eyebrow">Your card</p>
@@ -616,17 +645,19 @@
       <span><i class="swatch" style="background:var(--accent)"></i> actual</span>
     </div>
     <div class="btn-row">
-      <button class="btn-primary" id="btn-unlock">Open the sandbox</button>
+      <button class="btn-primary" id="btn-unlock">Try your own words</button>
       <button class="btn-ghost" id="btn-replay">Play again</button>
     </div>
   </section>
 
   <!-- SANDBOX -->
-  <section class="panel fade-in" id="sandbox" hidden style="margin-top:14px">
-    <p class="eyebrow">Sandbox — type anything</p>
+  <section class="panel" id="sandbox" style="margin-top:28px">
+    <p class="eyebrow">Your turn</p>
+    <h2 class="headline">Try your own words</h2>
+    <p class="sub" style="font-size:15px; margin-bottom:14px">Type or paste anything: the gene you work on, a sample ID, a sentence from a methods section, a phrase in your own language. Guess the count first, then look. Or start from one of these:</p>
     <div class="presets" id="presets"></div>
     <label for="sandbox-input" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Text to tokenise</label>
-    <textarea id="sandbox-input" spellcheck="false">Split the scone, then the jam, then the cream. Or the cream, then the jam. It depends who you ask.</textarea>
+    <textarea id="sandbox-input" spellcheck="false" placeholder="Type here…"></textarea>
     <div class="stats">
       <div class="stat"><div class="v" id="s-tokens">0</div><div class="k">tokens</div></div>
       <div class="stat"><div class="v" id="s-chars">0</div><div class="k">characters</div></div>
@@ -638,17 +669,6 @@
     </div>
     <div class="chips" id="sandbox-chips"></div>
   </section>
-
-  <details class="facil">
-    <summary>For the facilitator</summary>
-    <ol>
-      <li>Before the reveal, ask two people with different guesses to say <em>why</em> — the reasoning is the assessable thing, not the number.</li>
-      <li>After round 4, ask: whose work in this room costs the most to run through a model, and why? (Gene symbols, sequence data, and non-English text all price differently.)</li>
-      <li>After round 7, ask: if non-English text costs more per sentence, who pays that difference, and where would it show up in a research setting?</li>
-      <li>Closing: name one thing you now expect a model to be bad at, that you would not have predicted before this activity.</li>
-    </ol>
-    <p class="cite">Design note: prediction-before-reveal follows Schwartz &amp; Martin (2004), <em>Cognition and Instruction</em> 22(2), 129–184. Discussing a committed answer with a neighbour before it is resolved follows Smith et al. (2009), <em>Science</em> 323(5910), 122–124.</p>
-  </details>
 
   <footer>
     Tokeniser: cl100k_base, the vocabulary used by GPT-3.5 and GPT-4, computed in your browser via js-tiktoken (MIT). Tokenisation is model-specific — Claude, Gemini and Llama all split differently, and newer OpenAI models use o200k_base. Nothing you type leaves this page.<br>
@@ -778,31 +798,31 @@ function renderChips(container, tokens) {
    Rounds
 ------------------------------------------------------------------ */
 const ROUNDS = [
-  { text: "The patient tolerated the treatment well.",
-    why: "Ordinary English prose is what the vocabulary was built around. This is close to the cheapest text you can write — most whole words have earned a token of their own." },
-  { text: "strawberry",
-    why: "A word you know perfectly well is not necessarily a word the vocabulary learned in one piece. Where it breaks is arbitrary — it reflects what was frequent in the training text, not what is meaningful." },
-  { text: "scone Scone SCONE",
-    why: "Capitalisation is not cosmetic here: each casing is a different string, so each gets a different split. Notice too that the space before a word usually rides along inside the token rather than sitting on its own." },
+  { text: "I want cake",
+    why: "Ordinary English is what the vocabulary was built around. This is close to the cheapest text you can write — common words have earned a token of their own, and the space before a word rides along inside its token. Keep this number in mind for round 3." },
+  { text: "cake Cake CAKE",
+    why: "To the tokeniser these are three different strings, each with its own token ID — the model does not know they are the same word until it has learned that from context. Short, common words often survive whole; all-capital versions are rarer, so they are more likely to be split. Notice too that the space before a word usually rides along inside the token." },
+  { text: "Quiero tarta",
+    why: "The same sentence as round 1, in Spanish. Compare with your round 1 number. The vocabulary saw far less Spanish than English, so Spanish words are less likely to have a token of their own — and over a whole paragraph, or with accented characters (which take more than one byte), that gap keeps growing." },
   { text: "immunohistochemistry",
     why: "Technical vocabulary was rare in the training text, so the model rebuilds it from fragments every single time you use it. Your field's jargon is systematically more expensive than everyday speech." },
   { text: "TP53 BRCA1 EGFR KRAS",
     why: "Gene symbols mix letters and digits. The vocabulary has little reason to store them whole, and the digits break away separately — which is also why models are unreliable at copying identifiers exactly." },
   { text: "ATGCGATCGTAGCTAGCTAGC",
-    why: "To the tokeniser this is not a sequence, just an unusual run of letters. Nothing in the split respects codons or reading frames, so position-sensitive reasoning over raw sequence has no structural support." },
-  { text: "¿Cómo se dice scone en español?",
-    why: "Non-English text costs more per sentence, even in a well-resourced language. Accented characters are multi-byte before they are anything else, and the vocabulary saw far fewer of them." },
-  { text: "🧬 ☕ 🎂",
-    why: "An emoji is several bytes, and the tokeniser can carve below the character boundary. Chips shown as hex are not text at all — they are byte fragments that mean nothing on their own." }
+    why: "To the tokeniser this is not a sequence, just an unusual run of letters. Nothing in the split respects codons or reading frames, so position-sensitive reasoning over raw sequence has no structural support." }
 ];
 
 const PRESETS = [
-  { label: "scone recipe", text: "Preheat to 220°C. Rub 50 g butter into 225 g self-raising flour. Add 25 g sugar and 150 ml milk. Bake 12 min." },
+  { label: "strawberry", text: "How many r's are in strawberry?" },
+  { label: "emoji", text: "🧬 ☕ 🎂" },
+  { label: "cake recipe", text: "Preheat to 180°C. Cream 225 g butter with 225 g caster sugar. Beat in 4 eggs, then fold in 225 g self-raising flour. Bake 25 min." },
+  { label: "clinical note", text: "The patient tolerated the treatment well." },
+  { label: "en español", text: "El paciente toleró bien el tratamiento." },
   { label: "gene list", text: "TP53 BRCA1 BRCA2 EGFR KRAS PIK3CA PTEN RB1 MYC CDKN2A" },
+  { label: "Ensembl ID", text: "ENSG00000139618" },
+  { label: "variant", text: "NM_000546.6(TP53):c.743G>A (p.Arg248Gln)" },
   { label: "a DOI", text: "https://doi.org/10.1073/pnas.1319030111" },
-  { label: "español", text: "El paciente toleró bien el tratamiento." },
-  { label: "markdown", text: "# Scone method\n\n## Ingredients\n- 225 g flour\n- 50 g butter\n\n**Order matters.**" },
-  { label: "whitespace", text: "one        two\n\n\n\nthree" }
+  { label: "markdown", text: "# Cake method\n\n## Ingredients\n- 225 g flour\n- 225 g butter\n\n**Order matters.**" }
 ];
 
 let idx = 0;
@@ -874,6 +894,7 @@ function scorecard() {
   $("round-panel").hidden = true;
   $("reveal-panel").hidden = true;
   $("score-panel").hidden = false;
+  $("scroll-hint").hidden = true;
   paintPips();
 
   const under = results.filter((r) => r.guess < r.actual).length;
@@ -924,6 +945,7 @@ function scorecard() {
 }
 
 function runSandbox() {
+  if (!TOK) return;
   const text = $("sandbox-input").value;
   const tokens = TOK.encode(text);
   const chars = [...text].length;
@@ -953,13 +975,13 @@ $("btn-next").addEventListener("click", () => {
 $("btn-replay").addEventListener("click", () => {
   idx = 0; results.length = 0;
   $("score-panel").hidden = true;
+  $("scroll-hint").hidden = false;
   showRound();
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 $("btn-unlock").addEventListener("click", () => {
-  $("sandbox").hidden = false;
-  runSandbox();
   $("sandbox").scrollIntoView({ block: "start", behavior: "smooth" });
+  $("sandbox-input").focus({ preventScroll: true });
 });
 $("sandbox-input").addEventListener("input", runSandbox);
 
@@ -979,6 +1001,7 @@ PRESETS.forEach((p) => {
     TOK = new Tok(mod.default);
     $("boot").hidden = true;
     showRound();
+    runSandbox();
   } catch (e) {
     $("boot").hidden = true;
     $("specimen").textContent = "—";

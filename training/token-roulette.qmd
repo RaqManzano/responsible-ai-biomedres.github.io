@@ -1,6 +1,6 @@
 ---
 title: "Token Roulette"
-description: "A guess-then-reveal exercise on how language models split text into tokens, with a sandbox to try your own strings."
+description: "An exercise on how language models split text into tokens, with a sandbox to try your own strings."
 resource_type: "Training"
 status: "draft"
 reviewed_on: "2026-11-02"
@@ -17,9 +17,34 @@ references:
 
 ## Purpose
 
-Language models do not read letters or words, they read tokens. This activity asks you to guess how many tokens eight short strings split into, then shows the real split. Commit to a number before each reveal: the wrong guesses are the useful part.
+Language models do not read letters or words, they read tokens. This activity asks you to guess how many tokens six short strings split into (three about cake, three from biology), then shows the real split. Commit to a number before each reveal: the wrong guesses are the useful part. At the bottom of the page you can type your own words and see how they split.
 
-It was built for the CAKE Coffee & Learn sessions and works on its own for self-study.
+It was built for the CAKE Coffee & Learn at CRUK CI sessions and works on its own for self-study.
+
+::: {.callout-note}
+## Which model are the tokens from?
+
+Token counts come from OpenAI's GPT-4 tokeniser, **cl100k_base** (also used by GPT-3.5). Newer OpenAI models (GPT-4o onwards) use a different tokeniser, o200k_base, and Claude, Gemini and Llama each use their own. The same text can split into a different number of tokens depending on the model.
+:::
+
+<!--
+FACILITATOR NOTES (not rendered on the site)
+
+1. Before the reveal, ask two people with different guesses to say *why*.
+   The reasoning is the assessable thing, not the number.
+2. After round 4 (immunohistochemistry), ask: whose work in this room costs the most to run through
+   a model, and why? (Gene symbols, sequence data and non-English text all
+   price differently.)
+3. After round 3 (Spanish), ask: if non-English text costs more per sentence, who pays
+   that difference, and where would it show up in a research setting?
+4. Closing: name one thing you now expect a model to be bad at, that you
+   would not have predicted before this activity.
+
+Design note: prediction-before-reveal follows Schwartz & Martin (2004),
+Cognition and Instruction 22(2), 129-184. doi:10.1207/s1532690xci2202_1
+Discussing a committed answer with a neighbour before it is resolved follows
+Smith et al. (2009), Science 323(5910), 122-124. doi:10.1126/science.1165919
+-->
 
 ## Play
 
@@ -28,13 +53,13 @@ It was built for the CAKE Coffee & Learn sessions and works on its own for self-
 ```{=html}
 <iframe src="token-roulette/index.html"
         title="Token Roulette"
-        style="width:100%; height:900px; border:1px solid #D6DAD2; border-radius:12px;"
+        style="width:100%; height:1200px; border:1px solid #D6DAD2; border-radius:12px;"
         loading="lazy"></iframe>
 ```
 
 ## Notes
 
-- The tokeniser is **cl100k_base**, the vocabulary used by GPT-3.5 and GPT-4. Newer OpenAI models use o200k_base, and Claude, Gemini and Llama each split text differently, so counts are model-specific.
+- The tokeniser is loaded from js-tiktoken 1.0.15 (`cl100k_base` ranks), a JavaScript port of OpenAI's tiktoken.
 - Tokenisation runs in your browser. The page downloads the vocabulary (about 1 MB) once; nothing you type is sent anywhere.
 - To compare tokenisers side by side, try [The Tokenizer Playground](https://huggingface.co/spaces/Xenova/the-tokenizer-playground) or [Tiktokenizer](https://tiktokenizer.vercel.app/).
 
