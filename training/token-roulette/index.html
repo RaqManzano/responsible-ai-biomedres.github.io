@@ -1,0 +1,1017 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Token Roulette</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+  :root {
+    --paper:      #F2F3EF;
+    --surface:    #FBFBF9;
+    --surface-2:  #E9EBE5;
+    --ink:        #191D1B;
+    --ink-soft:   #4A524E;
+    --muted:      #7C8681;
+    --rule:       #D6DAD2;
+    --rule-hard:  #B9BFB5;
+    --accent:     #1F6B57;
+    --accent-ink: #14493C;
+    --on-accent:  #F7FBF9;
+    --warn:       #B4531C;
+    --chip-a:     0.18;
+    --chip-b:     0.45;
+    --shadow:     0 1px 2px rgba(25,29,27,.06), 0 8px 24px -16px rgba(25,29,27,.35);
+
+    --f-display: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --f-body:    "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --f-mono:    "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:      #141715;
+      --surface:    #1C201D;
+      --surface-2:  #262B27;
+      --ink:        #ECEEE9;
+      --ink-soft:   #B7BEB8;
+      --muted:      #838C86;
+      --rule:       #303631;
+      --rule-hard:  #454D47;
+      --accent:     #5FC3A6;
+      --accent-ink: #9BDCC7;
+      --on-accent:  #0E1412;
+      --warn:       #E39158;
+      --chip-a:     0.26;
+      --chip-b:     0.62;
+      --shadow:     0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:      #141715;
+    --surface:    #1C201D;
+    --surface-2:  #262B27;
+    --ink:        #ECEEE9;
+    --ink-soft:   #B7BEB8;
+    --muted:      #838C86;
+    --rule:       #303631;
+    --rule-hard:  #454D47;
+    --accent:     #5FC3A6;
+    --accent-ink: #9BDCC7;
+    --on-accent:  #0E1412;
+    --warn:       #E39158;
+    --chip-a:     0.26;
+    --chip-b:     0.62;
+    --shadow:     0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding-inline: 18px;
+    padding-block: 0 64px;
+  }
+
+  /* ---------- header ---------- */
+  .topbar {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 20;
+    background: color-mix(in oklab, var(--paper) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .topbar-in {
+    max-width: 760px;
+    margin: 0 auto;
+    padding-inline: 18px;
+    padding-block: 10px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .brand {
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: -0.015em;
+    margin-right: auto;
+  }
+  .brand em { font-style: normal; color: var(--accent); }
+
+  .pips { display: flex; gap: 4px; }
+  .pip {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--rule-hard);
+    transition: background .25s, transform .25s;
+  }
+  .pip.done { background: var(--accent); }
+  .pip.now  { background: var(--ink); transform: scale(1.4); }
+
+  .counter {
+    font-family: var(--f-mono);
+    font-size: 12px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  /* ---------- intro ---------- */
+  .lede { padding-block: 30px 22px; }
+  h1 {
+    font-family: var(--f-display);
+    font-size: clamp(30px, 7vw, 46px);
+    line-height: 1.04;
+    letter-spacing: -0.032em;
+    font-weight: 700;
+    margin: 0 0 12px;
+    text-wrap: balance;
+  }
+  .sub {
+    font-size: 17px;
+    color: var(--ink-soft);
+    max-width: 56ch;
+    margin: 0;
+  }
+
+  /* ---------- scroll hint ---------- */
+  .scroll-hint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    margin: 26px auto 0;
+    width: max-content;
+    font-family: var(--f-mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .scroll-hint:hover { color: var(--accent); }
+  .scroll-hint:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 6px; }
+  .scroll-hint .arrow {
+    font-size: 22px;
+    line-height: 1;
+    color: var(--accent);
+    animation: nudge 1.6s ease-in-out infinite;
+  }
+  @keyframes nudge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+
+  /* ---------- panels ---------- */
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    padding: 22px;
+  }
+  @media (max-width: 460px) { .panel { padding: 16px; } }
+
+  .eyebrow {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 10px;
+  }
+
+  /* ---------- the specimen ---------- */
+  .specimen {
+    font-family: var(--f-mono);
+    font-size: clamp(17px, 3.6vw, 23px);
+    line-height: 1.5;
+    background: var(--surface-2);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 18px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin: 0 0 6px;
+  }
+  .specimen-meta {
+    font-family: var(--f-mono);
+    font-size: 11.5px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    margin: 0 0 20px;
+  }
+
+  /* ---------- guess control ---------- */
+  .guessrow {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .bignum {
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: 54px;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
+    min-width: 2.1ch;
+    text-align: center;
+    color: var(--accent);
+  }
+  .sliderbox { flex: 1 1 240px; min-width: 200px; }
+  .guesslabel {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin: 0 0 8px;
+  }
+  input[type="range"] {
+    width: 100%;
+    accent-color: var(--accent);
+    height: 28px;
+  }
+  .ticks {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    color: var(--muted);
+    margin-top: -2px;
+  }
+
+  /* ---------- buttons ---------- */
+  button {
+    font-family: var(--f-body);
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 9px;
+    border: 1px solid transparent;
+    padding: 11px 20px;
+    cursor: pointer;
+    transition: background .15s, border-color .15s, color .15s, transform .08s;
+  }
+  button:active { transform: translateY(1px); }
+  button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+  .btn-primary:hover { background: var(--accent-ink); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink-soft);
+    border-color: var(--rule-hard);
+  }
+  .btn-ghost:hover { background: var(--surface-2); color: var(--ink); }
+  .btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+
+  /* ---------- reveal ---------- */
+  .verdict {
+    display: flex;
+    align-items: baseline;
+    gap: 10px 18px;
+    flex-wrap: wrap;
+    padding-bottom: 14px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .verdict-main {
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: clamp(22px, 5vw, 30px);
+    letter-spacing: -0.03em;
+  }
+  .verdict-sub {
+    font-family: var(--f-mono);
+    font-size: 13px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .off  { color: var(--warn); }
+  .spot { color: var(--accent); }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    font-family: var(--f-mono);
+    font-size: 15px;
+    margin-bottom: 16px;
+  }
+  .chip {
+    --c: 120,120,120;
+    background: rgba(var(--c), var(--chip-a));
+    border: 1px solid rgba(var(--c), var(--chip-b));
+    border-radius: 6px;
+    padding: 4px 7px;
+    white-space: pre;
+    position: relative;
+    line-height: 1.35;
+  }
+  .chip .id {
+    display: block;
+    font-size: 9.5px;
+    line-height: 1.2;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+    margin-top: 2px;
+  }
+  .chip.ws  { color: var(--muted); }
+  .chip.raw { font-style: italic; color: var(--warn); }
+
+  .why {
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin: 0;
+    padding-left: 13px;
+    border-left: 2px solid var(--accent);
+    max-width: 60ch;
+  }
+
+  /* ---------- rarity legend ---------- */
+  .legend {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    color: var(--muted);
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .ramp {
+    height: 7px;
+    width: 130px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, rgb(58,86,166), rgb(120,120,150), rgb(203,126,38));
+    border: 1px solid var(--rule);
+  }
+
+  /* ---------- scorecard ---------- */
+  .score-grid { display: grid; gap: 11px; margin: 18px 0 6px; }
+  .score-row {
+    display: grid;
+    grid-template-columns: minmax(90px, 1.3fr) 2fr auto;
+    gap: 12px;
+    align-items: center;
+    font-size: 13.5px;
+  }
+  .score-name {
+    font-family: var(--f-mono);
+    font-size: 12px;
+    color: var(--ink-soft);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .bars { display: grid; gap: 3px; }
+  .bar { height: 9px; border-radius: 3px; min-width: 2px; }
+  .bar.guess  { background: var(--rule-hard); }
+  .bar.actual { background: var(--accent); }
+  .score-delta {
+    font-family: var(--f-mono);
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .barkey {
+    display: flex; gap: 14px;
+    font-family: var(--f-mono); font-size: 10.5px; color: var(--muted);
+    margin-top: 4px;
+  }
+  .barkey span { display: flex; align-items: center; gap: 5px; }
+  .swatch { width: 14px; height: 8px; border-radius: 2px; display: inline-block; }
+
+  /* ---------- poll report strip ---------- */
+  .report {
+    margin: 18px 0 4px;
+    border: 1px solid var(--accent);
+    border-radius: 12px;
+    padding: 14px 16px;
+    background: color-mix(in oklab, var(--accent) 7%, var(--surface));
+  }
+  .report-title {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    margin: 0 0 10px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .report-title { color: var(--accent); }
+  }
+  :root[data-theme="dark"] .report-title { color: var(--accent); }
+  .report-figs { display: flex; gap: 26px; flex-wrap: wrap; }
+  .fig { display: flex; align-items: center; gap: 11px; }
+  .fig-v {
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
+    color: var(--accent);
+    min-width: 1.2ch;
+  }
+  .fig-k { font-size: 12.5px; line-height: 1.3; color: var(--ink-soft); }
+
+  .headline {
+    font-family: var(--f-display);
+    font-size: clamp(19px, 4.2vw, 25px);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin: 0 0 8px;
+    text-wrap: balance;
+  }
+
+  /* ---------- sandbox ---------- */
+  textarea {
+    width: 100%;
+    min-height: 110px;
+    font-family: var(--f-mono);
+    font-size: 15px;
+    line-height: 1.55;
+    padding: 13px;
+    border-radius: 10px;
+    border: 1px solid var(--rule-hard);
+    background: var(--surface-2);
+    color: var(--ink);
+    resize: vertical;
+  }
+  textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+  .stats {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 14px 0;
+  }
+  .stat {
+    flex: 1 1 96px;
+    background: var(--surface-2);
+    border-radius: 9px;
+    padding: 10px 12px;
+  }
+  .stat .v {
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+  }
+  .stat .k {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+
+  .presets { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 12px; }
+  .preset {
+    font-family: var(--f-mono);
+    font-size: 12px;
+    padding: 6px 11px;
+    border-radius: 999px;
+    background: transparent;
+    border: 1px solid var(--rule-hard);
+    color: var(--ink-soft);
+  }
+  .preset:hover { background: var(--surface-2); color: var(--ink); }
+
+  /* ---------- facilitator ---------- */
+  details.facil {
+    margin-top: 26px;
+    border: 1px dashed var(--rule-hard);
+    border-radius: 12px;
+    padding: 14px 18px;
+    background: transparent;
+  }
+  details.facil summary {
+    cursor: pointer;
+    font-family: var(--f-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  details.facil summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  details.facil ol { padding-left: 20px; margin: 14px 0 0; }
+  details.facil li { margin-bottom: 9px; color: var(--ink-soft); font-size: 14.5px; max-width: 62ch; }
+  details.facil .cite {
+    font-size: 12.5px;
+    color: var(--muted);
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid var(--rule);
+  }
+
+  footer {
+    margin-top: 30px;
+    padding-top: 16px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--f-mono);
+    font-size: 11.5px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ---------- loading / error ---------- */
+  .loading {
+    display: flex; align-items: center; gap: 11px;
+    font-family: var(--f-mono); font-size: 13px; color: var(--muted);
+  }
+  .spinner {
+    width: 14px; height: 14px; border-radius: 50%;
+    border: 2px solid var(--rule-hard);
+    border-top-color: var(--accent);
+    animation: spin .8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .errbox {
+    border-left: 3px solid var(--warn);
+    padding-left: 14px;
+    color: var(--ink-soft);
+    font-size: 14.5px;
+  }
+
+  .fade-in { animation: fade .3s ease-out; }
+  @keyframes fade { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+  }
+</style>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <div class="brand">Token <em>Roulette</em></div>
+    <div class="pips" id="pips" aria-hidden="true"></div>
+    <div class="counter" id="counter">loading</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="lede">
+    <h1>Six strings. Guess what they cost.</h1>
+    <p class="sub">A language model never sees your words. It sees tokens — chunks the vocabulary learned in advance. Commit to a number before each reveal; being wrong is the part that teaches.</p>
+  </div>
+
+  <!-- ROUND -->
+  <section class="panel" id="round-panel">
+    <p class="eyebrow" id="round-eyebrow">Round 1 of 8</p>
+    <div class="specimen" id="specimen">Loading the real GPT tokeniser…</div>
+    <p class="specimen-meta" id="specimen-meta">&nbsp;</p>
+
+    <div id="boot" class="loading">
+      <span class="spinner"></span>
+      <span>Fetching cl100k_base vocabulary (~1&nbsp;MB, once)</span>
+    </div>
+
+    <div id="guess-ui" hidden>
+      <div class="guessrow">
+        <div class="bignum" id="guess-readout">5</div>
+        <div class="sliderbox">
+          <p class="guesslabel" id="guess-label">How many tokens does this split into?</p>
+          <input type="range" id="guess-slider" min="1" max="30" value="5" step="1"
+                 aria-label="Your guess, number of tokens">
+          <div class="ticks"><span>1</span><span>15</span><span>30</span></div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn-primary" id="btn-commit">Lock it in</button>
+      </div>
+    </div>
+
+    <div id="err" hidden class="errbox"></div>
+  </section>
+
+  <!-- REVEAL -->
+  <section class="panel fade-in" id="reveal-panel" hidden style="margin-top:14px">
+    <div class="verdict">
+      <span class="verdict-main" id="verdict-main"></span>
+      <span class="verdict-sub" id="verdict-sub"></span>
+    </div>
+    <div class="legend">
+      <span>common</span><span class="ramp"></span><span>rare</span>
+      <span style="margin-left:4px">— tint shows where the token sits in the vocabulary</span>
+    </div>
+    <div class="chips" id="chips"></div>
+    <p class="why" id="why"></p>
+    <div class="btn-row">
+      <button class="btn-primary" id="btn-next">Next</button>
+    </div>
+  </section>
+
+  <a class="scroll-hint" id="scroll-hint" href="#sandbox">
+    <span>After the rounds, try your own words</span>
+    <span class="arrow" aria-hidden="true">↓</span>
+  </a>
+
+  <!-- SCORECARD -->
+  <section class="panel fade-in" id="score-panel" hidden style="margin-top:14px">
+    <p class="eyebrow">Your card</p>
+    <h2 class="headline" id="score-headline"></h2>
+    <p class="sub" id="score-sub" style="font-size:15px"></p>
+
+    <div class="report">
+      <p class="report-title">Your two numbers</p>
+      <div class="report-figs">
+        <div class="fig">
+          <div class="fig-v" id="fig-under">0</div>
+          <div class="fig-k">rounds you guessed<br>too <strong>low</strong></div>
+        </div>
+        <div class="fig">
+          <div class="fig-v" id="fig-over">0</div>
+          <div class="fig-k">rounds you guessed<br>too <strong>high</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="score-grid" id="score-grid"></div>
+    <div class="barkey">
+      <span><i class="swatch" style="background:var(--rule-hard)"></i> your guess</span>
+      <span><i class="swatch" style="background:var(--accent)"></i> actual</span>
+    </div>
+    <div class="btn-row">
+      <button class="btn-primary" id="btn-unlock">Try your own words</button>
+      <button class="btn-ghost" id="btn-replay">Play again</button>
+    </div>
+  </section>
+
+  <!-- SANDBOX -->
+  <section class="panel" id="sandbox" style="margin-top:28px">
+    <p class="eyebrow">Your turn</p>
+    <h2 class="headline">Try your own words</h2>
+    <p class="sub" style="font-size:15px; margin-bottom:14px">Type or paste anything: the gene you work on, a sample ID, a sentence from a methods section, a phrase in your own language. Guess the count first, then look. Or start from one of these:</p>
+    <div class="presets" id="presets"></div>
+    <label for="sandbox-input" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Text to tokenise</label>
+    <textarea id="sandbox-input" spellcheck="false" placeholder="Type here…"></textarea>
+    <div class="stats">
+      <div class="stat"><div class="v" id="s-tokens">0</div><div class="k">tokens</div></div>
+      <div class="stat"><div class="v" id="s-chars">0</div><div class="k">characters</div></div>
+      <div class="stat"><div class="v" id="s-words">0</div><div class="k">words</div></div>
+      <div class="stat"><div class="v" id="s-ratio">0</div><div class="k">chars / token</div></div>
+    </div>
+    <div class="legend">
+      <span>common</span><span class="ramp"></span><span>rare</span>
+    </div>
+    <div class="chips" id="sandbox-chips"></div>
+  </section>
+
+  <footer>
+    Tokeniser: cl100k_base, the vocabulary used by GPT-3.5 and GPT-4, computed in your browser via js-tiktoken (MIT). Tokenisation is model-specific — Claude, Gemini and Llama all split differently, and newer OpenAI models use o200k_base. Nothing you type leaves this page.<br>
+    Built for the CAKE coffee-and-learn, Cancer Research UK Cambridge Institute.
+  </footer>
+</div>
+
+<script type="module">
+/* ------------------------------------------------------------------
+   BPE tokeniser — adapted from js-tiktoken (MIT, dqbd/tiktoken),
+   with base64-js swapped for native atob so it runs with no bundler.
+   Rank data is fetched from the published js-tiktoken package.
+------------------------------------------------------------------ */
+const RANKS_URL = "https://cdn.jsdelivr.net/npm/js-tiktoken@1.0.15/dist/ranks/cl100k_base.js";
+
+function b64bytes(s) {
+  const padded = s + "=".repeat((4 - (s.length % 4)) % 4);
+  const bin = atob(padded);
+  const out = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+  return out;
+}
+
+function bytePairMerge(piece, rankMap) {
+  let parts = Array.from({ length: piece.length }, (_, i) => ({ start: i, end: i + 1 }));
+  while (parts.length > 1) {
+    let minRank = null;
+    for (let i = 0; i < parts.length - 1; i++) {
+      const rank = rankMap.get(piece.slice(parts[i].start, parts[i + 1].end).join(","));
+      if (rank == null) continue;
+      if (minRank == null || rank < minRank[0]) minRank = [rank, i];
+    }
+    if (minRank == null) break;
+    const i = minRank[1];
+    parts[i] = { start: parts[i].start, end: parts[i + 1].end };
+    parts.splice(i + 1, 1);
+  }
+  return parts;
+}
+
+class Tok {
+  constructor(ranks) {
+    this.patStr = ranks.pat_str;
+    this.enc = new TextEncoder();
+    this.rankMap = new Map();
+    this.textMap = new Map();
+    this.maxRank = 0;
+    for (const line of ranks.bpe_ranks.split("\n")) {
+      if (!line) continue;
+      const bits = line.split(" ");
+      const offset = Number.parseInt(bits[1], 10);
+      for (let i = 2; i < bits.length; i++) {
+        const rank = offset + i - 2;
+        const bytes = b64bytes(bits[i]);
+        this.rankMap.set(bytes.join(","), rank);
+        this.textMap.set(rank, bytes);
+        if (rank > this.maxRank) this.maxRank = rank;
+      }
+    }
+  }
+  /** returns [{id, bytes}] */
+  encode(text) {
+    const re = new RegExp(this.patStr, "ug");
+    const out = [];
+    for (const m of text.matchAll(re)) {
+      const piece = this.enc.encode(m[0]);
+      const direct = this.rankMap.get(piece.join(","));
+      if (direct != null) { out.push(direct); continue; }
+      if (piece.length === 1) {
+        const r = this.rankMap.get(piece.join(","));
+        if (r != null) out.push(r);
+        continue;
+      }
+      for (const p of bytePairMerge(piece, this.rankMap)) {
+        const r = this.rankMap.get(piece.slice(p.start, p.end).join(","));
+        if (r != null) out.push(r);
+      }
+    }
+    return out.map((id) => ({ id, bytes: this.textMap.get(id) }));
+  }
+}
+
+/* ------------------------------------------------------------------
+   Rendering
+------------------------------------------------------------------ */
+const dec = new TextDecoder("utf-8", { fatal: true });
+let TOK = null;
+
+function tokenLabel(bytes) {
+  let text = null;
+  try { text = dec.decode(bytes); } catch (e) { text = null; }
+  if (text === null) {
+    return { cls: "raw", display: [...bytes].map((b) => b.toString(16).padStart(2, "0")).join(" ") };
+  }
+  if (/^\s+$/.test(text)) {
+    return { cls: "ws", display: text.replace(/ /g, "·").replace(/\n/g, "⏎").replace(/\t/g, "→") };
+  }
+  return { cls: "", display: text.replace(/^ /, "·").replace(/\n/g, "⏎") };
+}
+
+/* rarity tint: low id (common) -> indigo, high id (rare) -> amber */
+function rarityRGB(id, maxRank) {
+  const t = Math.sqrt(Math.min(1, Math.max(0, id / maxRank)));
+  const a = [58, 86, 166], b = [203, 126, 38];
+  return a.map((v, i) => Math.round(v + (b[i] - v) * t)).join(",");
+}
+
+function renderChips(container, tokens) {
+  container.textContent = "";
+  const frag = document.createDocumentFragment();
+  for (const t of tokens) {
+    const { cls, display } = tokenLabel(t.bytes);
+    const el = document.createElement("span");
+    el.className = "chip" + (cls ? " " + cls : "");
+    el.style.setProperty("--c", rarityRGB(t.id, TOK.maxRank));
+    el.appendChild(document.createTextNode(display));
+    const idEl = document.createElement("span");
+    idEl.className = "id";
+    idEl.textContent = t.id;
+    el.appendChild(idEl);
+    frag.appendChild(el);
+  }
+  container.appendChild(frag);
+}
+
+/* ------------------------------------------------------------------
+   Rounds
+------------------------------------------------------------------ */
+const ROUNDS = [
+  { text: "I want cake",
+    why: "Ordinary English is what the vocabulary was built around. This is close to the cheapest text you can write — common words have earned a token of their own, and the space before a word rides along inside its token. Keep this number in mind for round 3." },
+  { text: "cake Cake CAKE",
+    why: "To the tokeniser these are three different strings, each with its own token ID — the model does not know they are the same word until it has learned that from context. Short, common words often survive whole; all-capital versions are rarer, so they are more likely to be split. Notice too that the space before a word usually rides along inside the token." },
+  { text: "Quiero tarta",
+    why: "The same sentence as round 1, in Spanish. Compare with your round 1 number. The vocabulary saw far less Spanish than English, so Spanish words are less likely to have a token of their own — and over a whole paragraph, or with accented characters (which take more than one byte), that gap keeps growing." },
+  { text: "immunohistochemistry",
+    why: "Technical vocabulary was rare in the training text, so the model rebuilds it from fragments every single time you use it. Your field's jargon is systematically more expensive than everyday speech." },
+  { text: "TP53 BRCA1 EGFR KRAS",
+    why: "Gene symbols mix letters and digits. The vocabulary has little reason to store them whole, and the digits break away separately — which is also why models are unreliable at copying identifiers exactly." },
+  { text: "ATGCGATCGTAGCTAGCTAGC",
+    why: "To the tokeniser this is not a sequence, just an unusual run of letters. Nothing in the split respects codons or reading frames, so position-sensitive reasoning over raw sequence has no structural support." }
+];
+
+const PRESETS = [
+  { label: "strawberry", text: "How many r's are in strawberry?" },
+  { label: "emoji", text: "🧬 ☕ 🎂" },
+  { label: "cake recipe", text: "Preheat to 180°C. Cream 225 g butter with 225 g caster sugar. Beat in 4 eggs, then fold in 225 g self-raising flour. Bake 25 min." },
+  { label: "clinical note", text: "The patient tolerated the treatment well." },
+  { label: "en español", text: "El paciente toleró bien el tratamiento." },
+  { label: "gene list", text: "TP53 BRCA1 BRCA2 EGFR KRAS PIK3CA PTEN RB1 MYC CDKN2A" },
+  { label: "Ensembl ID", text: "ENSG00000139618" },
+  { label: "variant", text: "NM_000546.6(TP53):c.743G>A (p.Arg248Gln)" },
+  { label: "a DOI", text: "https://doi.org/10.1073/pnas.1319030111" },
+  { label: "markdown", text: "# Cake method\n\n## Ingredients\n- 225 g flour\n- 225 g butter\n\n**Order matters.**" }
+];
+
+let idx = 0;
+const results = [];
+
+const $ = (id) => document.getElementById(id);
+const pipsEl = $("pips");
+const counterEl = $("counter");
+
+function buildPips() {
+  pipsEl.textContent = "";
+  ROUNDS.forEach(() => {
+    const p = document.createElement("span");
+    p.className = "pip";
+    pipsEl.appendChild(p);
+  });
+}
+function paintPips() {
+  [...pipsEl.children].forEach((p, i) => {
+    p.className = "pip" + (i < idx ? " done" : i === idx ? " now" : "");
+  });
+  counterEl.textContent = idx < ROUNDS.length ? `${idx + 1} / ${ROUNDS.length}` : "done";
+}
+
+function showRound() {
+  const r = ROUNDS[idx];
+  $("round-eyebrow").textContent = `Round ${idx + 1} of ${ROUNDS.length}`;
+  $("specimen").textContent = r.text;
+  const chars = [...r.text].length;
+  const words = r.text.trim().split(/\s+/).filter(Boolean).length;
+  $("specimen-meta").textContent = `${chars} characters · ${words} word${words === 1 ? "" : "s"}`;
+  $("reveal-panel").hidden = true;
+  $("round-panel").hidden = false;
+  $("guess-ui").hidden = false;
+  $("guess-slider").value = 5;
+  $("guess-readout").textContent = "5";
+  paintPips();
+}
+
+function reveal() {
+  const r = ROUNDS[idx];
+  const guess = Number($("guess-slider").value);
+  const tokens = TOK.encode(r.text);
+  const actual = tokens.length;
+  results.push({ text: r.text, guess, actual });
+
+  const diff = guess - actual;
+  const main = $("verdict-main");
+  const sub = $("verdict-sub");
+  if (diff === 0) {
+    main.textContent = `Exactly ${actual}.`;
+    main.className = "verdict-main spot";
+    sub.textContent = "spot on";
+  } else {
+    main.textContent = `${actual} tokens.`;
+    main.className = "verdict-main off";
+    sub.textContent = `you said ${guess} — ${Math.abs(diff)} too ${diff > 0 ? "many" : "few"}`;
+  }
+
+  renderChips($("chips"), tokens);
+  $("why").textContent = r.why;
+  $("guess-ui").hidden = true;
+  $("reveal-panel").hidden = false;
+  $("btn-next").textContent = idx === ROUNDS.length - 1 ? "See your card" : "Next";
+  $("btn-next").focus();
+}
+
+function scorecard() {
+  $("round-panel").hidden = true;
+  $("reveal-panel").hidden = true;
+  $("score-panel").hidden = false;
+  $("scroll-hint").hidden = true;
+  paintPips();
+
+  const under = results.filter((r) => r.guess < r.actual).length;
+  const over  = results.filter((r) => r.guess > r.actual).length;
+  const exact = results.filter((r) => r.guess === r.actual).length;
+  const totalErr = results.reduce((s, r) => s + Math.abs(r.guess - r.actual), 0);
+
+  $("fig-under").textContent = under;
+  $("fig-over").textContent = over;
+
+  $("score-headline").textContent =
+    exact === results.length ? "Perfect card."
+    : under > results.length / 2 ? `You under-estimated ${under} of ${results.length}.`
+    : `You were off by ${totalErr} tokens in total.`;
+
+  $("score-sub").textContent =
+    `${exact} exact · ${totalErr} tokens of total error · the gap is usually widest on the strings furthest from everyday English.`;
+
+  const maxVal = Math.max(...results.flatMap((r) => [r.guess, r.actual]), 1);
+  const grid = $("score-grid");
+  grid.textContent = "";
+  for (const r of results) {
+    const row = document.createElement("div");
+    row.className = "score-row";
+
+    const name = document.createElement("div");
+    name.className = "score-name";
+    name.textContent = r.text.length > 26 ? r.text.slice(0, 26) + "…" : r.text;
+
+    const bars = document.createElement("div");
+    bars.className = "bars";
+    const g = document.createElement("div");
+    g.className = "bar guess";
+    g.style.width = (r.guess / maxVal * 100) + "%";
+    const a = document.createElement("div");
+    a.className = "bar actual";
+    a.style.width = (r.actual / maxVal * 100) + "%";
+    bars.append(g, a);
+
+    const d = document.createElement("div");
+    d.className = "score-delta";
+    const diff = r.guess - r.actual;
+    d.textContent = diff === 0 ? "✓" : (diff > 0 ? "+" : "") + diff;
+
+    row.append(name, bars, d);
+    grid.appendChild(row);
+  }
+}
+
+function runSandbox() {
+  if (!TOK) return;
+  const text = $("sandbox-input").value;
+  const tokens = TOK.encode(text);
+  const chars = [...text].length;
+  const words = text.trim().split(/\s+/).filter(Boolean).length;
+  $("s-tokens").textContent = tokens.length;
+  $("s-chars").textContent = chars;
+  $("s-words").textContent = words;
+  $("s-ratio").textContent = tokens.length ? (chars / tokens.length).toFixed(1) : "0";
+  renderChips($("sandbox-chips"), tokens);
+}
+
+/* ------------------------------------------------------------------
+   Wiring
+------------------------------------------------------------------ */
+buildPips();
+paintPips();
+
+$("guess-slider").addEventListener("input", (e) => {
+  $("guess-readout").textContent = e.target.value;
+});
+$("btn-commit").addEventListener("click", reveal);
+$("btn-next").addEventListener("click", () => {
+  idx++;
+  if (idx >= ROUNDS.length) scorecard();
+  else { showRound(); $("round-panel").scrollIntoView({ block: "nearest", behavior: "smooth" }); }
+});
+$("btn-replay").addEventListener("click", () => {
+  idx = 0; results.length = 0;
+  $("score-panel").hidden = true;
+  $("scroll-hint").hidden = false;
+  showRound();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+$("btn-unlock").addEventListener("click", () => {
+  $("sandbox").scrollIntoView({ block: "start", behavior: "smooth" });
+  $("sandbox-input").focus({ preventScroll: true });
+});
+$("sandbox-input").addEventListener("input", runSandbox);
+
+const presetBox = $("presets");
+PRESETS.forEach((p) => {
+  const b = document.createElement("button");
+  b.className = "preset";
+  b.type = "button";
+  b.textContent = p.label;
+  b.addEventListener("click", () => { $("sandbox-input").value = p.text; runSandbox(); });
+  presetBox.appendChild(b);
+});
+
+(async function boot() {
+  try {
+    const mod = await import(RANKS_URL);
+    TOK = new Tok(mod.default);
+    $("boot").hidden = true;
+    showRound();
+    runSandbox();
+  } catch (e) {
+    $("boot").hidden = true;
+    $("specimen").textContent = "—";
+    const err = $("err");
+    err.hidden = false;
+    err.textContent =
+      "Could not load the tokeniser vocabulary, so this page has nothing real to show you and will not guess. " +
+      "Check the network connection and reload. If it keeps failing, use platform.openai.com/tokenizer as a fallback.";
+  }
+})();
+</script>
+
+</body></html>
