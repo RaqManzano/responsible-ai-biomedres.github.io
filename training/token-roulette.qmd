@@ -1,0 +1,43 @@
+---
+title: "Token Roulette"
+description: "A guess-then-reveal exercise on how language models split text into tokens, with a sandbox to try your own strings."
+resource_type: "Training"
+status: "draft"
+reviewed_on: "2026-11-02"
+contributors:
+  - Raquel Manzano
+tags:
+  - tokens
+  - activity
+  - coffee and learn
+references:
+  - "Sennrich, Haddow & Birch (2016) Neural Machine Translation of Rare Words with Subword Units. ACL. doi:10.18653/v1/P16-1162"
+  - "js-tiktoken (MIT), cl100k_base vocabulary: https://github.com/dqbd/tiktoken"
+---
+
+## Purpose
+
+Language models do not read letters or words, they read tokens. This activity asks you to guess how many tokens eight short strings split into, then shows the real split. Commit to a number before each reveal: the wrong guesses are the useful part.
+
+It was built for the CAKE Coffee & Learn sessions and works on its own for self-study.
+
+## Play
+
+[Open Token Roulette in a full window](token-roulette/index.html){.btn .btn-primary target="_blank"}
+
+```{=html}
+<iframe src="token-roulette/index.html"
+        title="Token Roulette"
+        style="width:100%; height:900px; border:1px solid #D6DAD2; border-radius:12px;"
+        loading="lazy"></iframe>
+```
+
+## Notes
+
+- The tokeniser is **cl100k_base**, the vocabulary used by GPT-3.5 and GPT-4. Newer OpenAI models use o200k_base, and Claude, Gemini and Llama each split text differently, so counts are model-specific.
+- Tokenisation runs in your browser. The page downloads the vocabulary (about 1 MB) once; nothing you type is sent anywhere.
+- To compare tokenisers side by side, try [The Tokenizer Playground](https://huggingface.co/spaces/Xenova/the-tokenizer-playground) or [Tiktokenizer](https://tiktokenizer.vercel.app/).
+
+## Next revision
+
+Add a second round set using biomedical identifiers (Ensembl IDs, HGVS variant notation) and a model switcher.
