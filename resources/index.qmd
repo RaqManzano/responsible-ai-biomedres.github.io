@@ -3,11 +3,20 @@ title: "Resources"
 description: "Reading notes, local support links and other useful material gathered during the fellowship."
 page-layout: full
 toc: false
+aliases:
+  - materials.html
+listing:
+  id: resources-list
+  contents:
+    - "*.qmd"
+    - "!index.qmd"
+  type: grid
+  sort: "title"
 ---
 
 ## How the site is organised
 
-The site uses three practical resource types: guidance, training and materials. Subtypes such as decision tools, case studies, literature notes and Cambridge links are handled with tags.
+Guidance and training have their own sections. Everything else (reading notes, Cambridge links and other useful material) is listed below. Subtypes such as decision tools, case studies, literature notes and Cambridge links are handled with tags.
 
 ::: {.section-card-grid}
 ::: {.section-card}
@@ -29,21 +38,16 @@ Workshops, case studies and teaching resources intended for reuse.
 
 [Browse training](../training/index.qmd)
 :::
-
-::: {.section-card}
-![](../assets/icons/article.svg){fig-alt="Materials icon" .home-link-card__icon}
-
-### Materials
-
-Reading notes, Cambridge links and other useful material gathered during the fellowship.
-
-[Browse materials](materials.qmd)
-:::
 :::
 
-## Transparency rules
+## More resources
+
+::: {#resources-list}
+:::
+
+<!-- ## Transparency rules
 
 - Draft and reviewed content are visibly distinct.
 - Every resource carries explicit metadata.
 - Contributions enter through GitHub issues so suggestions remain traceable.
-- Literature notes should explain relevance, not just store citations.
+- Literature notes should explain relevance, not just store citations. -->

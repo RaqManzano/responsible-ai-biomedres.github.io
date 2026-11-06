@@ -20,7 +20,7 @@ This could be a paper, tool, example, failure mode, workshop idea, policy docume
 
 ### 2. Decide where it fits
 
-Suggestions should go into the most useful section: `guidance`, `training` or `materials`. If the fit is unclear, that is fine; the review process can help place it.
+Suggestions should go into the most useful section: `guidance`, `training` or general `resources`. If the fit is unclear, that is fine; the review process can help place it.
 
 ### 3. Discuss and review
 
@@ -76,7 +76,7 @@ Good submissions are brief and specific. The most important field is not the lin
 
 Use `tags` for the practical subtype. For example, a workshop and a case study can both be `Training`; a literature note and a Cambridge support directory can both be `Materials`.
 
-Use `Materials` for reading notes, local support links, background documents, tools, websites and other useful items gathered during the fellowship. These should live under `resources/` so they appear on the Materials page.
+Use `Materials` for reading notes, local support links, background documents, tools, websites and other useful items gathered during the fellowship. These should live under `resources/` so they appear on the Resources page.
 
 GitHub issue forms use dropdowns for this where possible, so new suggestions should not introduce extra labels or spelling variants.
 
