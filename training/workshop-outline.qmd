@@ -1,27 +1,93 @@
 ---
-title: "Pilot workshop outline"
-description: "Initial structure for the main responsible AI workshop to be tested during the fellowship."
+title: "AI basics (1hr)"
+description: "Here we cover responsible use of AI, tokens and types of prompts. Designed for 1hr but allow extra time if possible for questions."
 resource_type: "Training"
-status: "draft"
-reviewed_on: "2026-06-22"
+status: "reviewed"
+reviewed_on: "2026-11-06"
 contributors:
   - Raquel Manzano
 tags:
   - workshop
-  - training
-  - evaluation
+  - coffee and learn
+  - tokens
+  - prompting
+  - responsible use
 references:
-  - "WP2 workshop concept"
+  - "CAKE Coffee & Learn (CRUK CI), 3 Nov 2026"
+  - "https://www.information-compliance.admin.cam.ac.uk/data-protection/guidance/ai-guidance"
+  - "10.18653/v1/P16-1162"
 ---
 
-## Intended session blocks
+## Session at a glance
 
-- what generative AI is good at and where it fails
-- local constraints around sensitive data and infrastructure
-- scenario-based exercises using real biomedical research decisions
-- documentation, attribution and human oversight
-- open discussion of uncertainty, misconceptions and edge cases
+- **Format:** CAKE Coffee & Learn, 60 minutes, in person, with two group activities and one live web activity + discussion.
+- **Audience:** researchers and staff at CRUK CI, no prior AI or coding knowledge needed. Can be easily extended to other institutions.
+- **First run:** 3 November 2026.
+
+## Learning goals
+
+By the end of the session, participants can:
+
+- explain why generative AI *writes* rather than *looks things up*
+- understand where tokens make text costly
+- pick a prompting technique to fit a task
+- spot which AI outputs need most checking
+- apply five habits for responsible use
+
+## Structure
+
+| Time | Block | Activity |
+|---|---|---|
+| 12 min | What is really AI | – |
+| 15 min | Tokens | [Token Roulette](token-roulette.qmd) (live) |
+| 15 min | Prompting | Groups try different prompts |
+| 16 min | Responsible AI in practice | Groups classify how much validation a task needs when using AI |
+| 2 min | Close and feedback | – |
+
+<!-- ## Content
+
+### 1. Why it matters: how AI works
+
+- Where AI fits in a research workflow: exploration, implementation, validation, dissemination. *AI can accelerate the work; it cannot carry the responsibility.*
+- AI writes, it doesn't search: a search engine finds existing documents; generative AI predicts one likely token at a time.
+- Key terms: prompt, token, context window, hallucination.
+- Four properties , each with "usually fine" vs "verify and compensate" examples:
+  - **Token prediction:** predicts from training data, checks nothing.
+  - **Knowledge:** shaped by training data and fine-tuning.
+  - **Memory:** attention is limited.
+  - **Steerability:** precise asks pay off.
+
+### 2. Tokens: how AI reads
+
+- Models read tokens, not letters or words: chunks of text chosen by frequency, not meaning (~4 characters per token in English).
+- Why researchers should care: **cost** (billing per token), **context limits** (the window is counted in tokens) and **behaviour** (miscounted letters, mangled gene symbols and identifiers).
+- **Activity: [Token Roulette](token-roulette.qmd).** Participants guess how many tokens six strings split into (everyday English, capitalisation, Spanish, jargon, gene symbols, DNA sequence), then see the real split.
+
+### 3. Prompting: how to steer AI
+
+- Six techniques: zero-shot, few-shot, chain of thought, role/experts, Socratic and tree of thought, retrieval-augmented generation (RAG).
+- Formatting prompts with Markdown: separate instructions from pasted material, ask for the output format you want, save prompts that work as `.md` files.
+- **Activity: one cake, five prompts.** Five groups each try one technique on the same cake task in their usual AI tool, then share which answer they would actually use and which of the four properties showed up.
+- Matching technique to task: planning, working from one document, generating hypotheses, proofreading/summarising.
+
+### 4. Responsible AI in practice
+
+- Why it sounds right when it isn't: hallucination, sycophancy, reproducibility, vibe coding.
+- Five habits:
+  1. Protect the data
+  2. Use the licensed tool
+  3. Verify the specifics
+  4. Ask whose data is "default"
+  5. Own it, disclose it
+- **Activity: green, amber or red?** In a lung cancer clinical trial scenario, groups sort six AI tasks by risk, add a guardrail and verification step for each amber task, and agree one "prompt + proof" rule.
+- The accountable researcher loop: ask well → constrain context → verify evidence → escalate uncertainty → independent check.
+- Using AI at the Institute: licensed tools, keep patient data out, check before you use, disclose use, never put a grant you are reviewing into AI, and ask if unsure.
+
+### 5. Close
+
+- Feedback collected at the end of the session.
+- Extra resources: [University of Cambridge AI guidance](../guidance/cambridge-ai-guidance.qmd), UIS guidance on licensed tools and data security classifications, Cancer Research UK policy on generative AI in funding applications. -->
 
 ## Evaluation note
 
-The workshop should collect feedback that improves both content and delivery. It should not be treated as a one-off presentation.
+The workshop will collect feedback that to improve both content and delivery. Stay tuned.

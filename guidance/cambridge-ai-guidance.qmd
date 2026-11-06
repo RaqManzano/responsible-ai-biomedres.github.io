@@ -1,0 +1,27 @@
+---
+title: "University of Cambridge AI guidance"
+description: "The University's guidance on generative AI use, and where it does and doesn't apply to research."
+resource_type: "Guidance"
+status: "draft"
+reviewed_on: "2026-11-06"
+contributors:
+  - Raquel Manzano
+tags:
+  - Cambridge
+  - governance
+  - data protection
+references:
+  - "https://www.information-compliance.admin.cam.ac.uk/data-protection/guidance/ai-guidance"
+---
+
+## Information Compliance: AI guidance
+
+**Link:** <https://www.information-compliance.admin.cam.ac.uk/data-protection/guidance/ai-guidance>
+
+**What it is:** The University's guidance for staff on using generative AI for administrative tasks. It covers benefits, risks (bias and inaccuracy, data protection, IP and copyright, AI legislation, reputation), worked good/bad practice examples, and tips for the licensed tools (Copilot, Gemini, NotebookLM). A [key points summary (PDF)](https://www.information-compliance.admin.cam.ac.uk/sites/default/files/GenAI%20Key%20Points%20Dec%202025.pdf) is also available.
+
+**Why it matters:** It's the University's baseline position on licensed vs free tools, personal and special category data, and human review of outputs. It also links out to further University guidance (UIS data classification, ISRA, Communications, Education).
+
+**Scope:** It explicitly does **not** cover research use of GenAI, which is left to existing processes such as research ethics.
+
+**Notes:** Last updated December 2025, with a review planned for summer 2026.

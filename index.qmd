@@ -68,12 +68,12 @@ Workshop material, case studies and notes from clinics or pilot sessions that ca
 :::
 
 ::: {.home-link-card}
-![](assets/icons/article.svg){fig-alt="Materials icon" .home-link-card__icon}
+![](assets/icons/article.svg){fig-alt="Resources icon" .home-link-card__icon}
 
-### Materials
+### More resources
 
 Reading notes, Cambridge links and other useful material gathered during the fellowship.
 
-[Open materials](resources/materials.qmd)
+[Open resources](resources/index.qmd#more-resources)
 :::
 :::
