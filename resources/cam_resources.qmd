@@ -2,8 +2,8 @@
 title: "Cambridge resources"
 description: "Potentially interesting resources in cambridge"
 resource_type: "Materials"
-status: "draft"
-reviewed_on: "2026-06-26"
+status: "reviewed"
+reviewed_on: "2026-11-06"
 contributors:
   - Raquel Manzano
 tags:
