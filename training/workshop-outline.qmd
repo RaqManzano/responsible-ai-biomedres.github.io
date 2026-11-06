@@ -1,6 +1,6 @@
 ---
 title: "AI basics (1hr)"
-description: "Here we cover responsible use of AI, tokens and types of prompts. Designed for 1hr but sllow extra time if possible for questions."
+description: "Here we cover responsible use of AI, tokens and types of prompts. Designed for 1hr but allow extra time if possible for questions."
 resource_type: "Training"
 status: "reviewed"
 reviewed_on: "2026-11-06"
