@@ -2,8 +2,8 @@
 title: "Cambridge resources"
 description: "Potentially interesting resources in cambridge"
 resource_type: "Materials"
-status: "draft"
-reviewed_on: "2026-06-26"
+status: "reviewed"
+reviewed_on: "2026-11-06"
 contributors:
   - Raquel Manzano
 tags:
@@ -24,3 +24,17 @@ tags:
 **Best fit:** Technical support / local infrastructure
 
 **Notes:** Focused on practical technical challenges.
+
+## Accelerate Programme for Scientific Discovery
+
+### Accelerate Science Resource Hub: Training
+
+**Link:** <https://docs.science.ai.cam.ac.uk/training/>
+
+**What it is:** A curated list of AI training from the Accelerate Programme, the wider University and other sources. It covers an intro course (AI Core Concepts), 1-day Accelerate workshops (e.g. Introduction to Generative AI, LLMs, Hands-On Agentic AI, Docker for Science), Accelerate–Cambridge Spark courses, University courses, textbooks and external tutorials.
+
+**Why it matters:** Each item is tagged by level (Newcomer / Intermediate / Proficient), so it's a quick way to point researchers to training that fits their starting point. Workshop materials are open to work through at your own pace.
+
+**Best fit:** Training / upskilling
+
+**Notes:** Workshops are booked through the University training booking system (UTBS). The same hub also lists Accelerate's Clinic and Community pages.
